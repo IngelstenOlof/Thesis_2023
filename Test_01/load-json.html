@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//unpkg.com/force-graph"></script>
+    <title>D3.js Test</title>
+</head>
+<body>
+    <div id="graph"></div>
+
+    <script>
+       fetch('testData.json').then(res => res.json()).then(data => {
+        const Graph = ForceGraph()
+        (document.getElementById('graph'))
+            .graphData(data)
+            .nodeId('id')
+            .nodeVal('val')
+            .nodeLabel('id')
+            .nodeAutoColorBy('group')
+            .linkSource('source')
+            .linkTarget('target')
+       });
+    </script>
+
+</body>
+</html>
