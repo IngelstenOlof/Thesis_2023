@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/force-graph"></script>
+    <link rel="stylesheet" href="drawer.css">
+    <title>D3.js Test</title>
+  </head>
+  <body>
+      <div id="drawer" class="drawer close-drawer">
+        <h1>Header</h1>
+        <p>Lots o content here</p>
+      </div>
+      <div id="graph"></div>
+
+    <script>
+      /* //Random tree
+      const N = 30;
+      const gData = {
+        nodes: [...Array(N).keys()].map((i) => ({ id: i })),
+        links: [...Array(N).keys()]
+          .filter((id) => id)
+          .map((id) => ({
+            source: id,
+            target: Math.round(Math.random() * (id - 1)),
+          })),
+      }; */
+
+      let selectedNodes = new Set();
+
+      fetch('solutions.json').then(res => res.json()).then(gData => {
+      const Graph = ForceGraph()
+      (document.getElementById("graph"))
+        .graphData(gData)
+        .nodeId("id")
+        .linkSource("source")
+        .linkTarget("target")
+        .nodeLabel("name")
+        .nodeRelSize(8)
+        .nodeColor((node) => (selectedNodes.has(node) ? "darkorange" : "grey"))
+        .onNodeClick((node, event) => {
+          if (event.ctrlKey || event.shiftKey || event.altKey) {
+            //multi-selection
+            selectedNodes.has(node)
+              ? selectedNodes.delete(node)
+              : selectedNodes.add(node);
+          } else {
+            //single-selection
+            const untoggle = selectedNodes.has(node) && selectedNodes.size == 1;
+            selectedNodes.clear();
+            !untoggle && selectedNodes.add(node);
+            ToggleDrawer();
+          }
+
+          Graph.nodeColor(Graph.nodeColor()); //update colour of nodes
+        })
+        .onNodeDrag((node, translate) => {
+          if (selectedNodes.has(node)) {
+            // moving a selected node
+            [...selectedNodes]
+              .filter((selNode) => selNode !== node) // don't touch node being dragged
+              .forEach((node) =>
+                ["x", "y"].forEach(
+                  (coord) =>
+                    (node[`f${coord}`] = node[coord] + translate[coord])
+                )
+              ); // translate other nodes by same amount
+          }
+        })
+        .onNodeDragEnd((node) => {
+          if (selectedNodes.has(node)) {
+            // finished moving a selected node
+            [...selectedNodes]
+              .filter((selNode) => selNode !== node) // don't touch node being dragged
+              .forEach((node) =>
+                ["x", "y"].forEach((coord) => (node[`f${coord}`] = undefined))
+              ); // unfix controlled nodes
+          }
+        });
+
+    })
+
+
+
+        function ToggleDrawer() {
+            const drawer = document.getElementById("drawer");
+            if(drawer.classList.contains("open-drawer")) {
+                drawer.classList.remove("open-drawer");
+                drawer.classList.add("close-drawer");
+            } else {
+                drawer.classList.remove("close-drawer");
+                drawer.classList.add("open-drawer");
+            }
+        }
+    </script>
+  </body>
+</html>

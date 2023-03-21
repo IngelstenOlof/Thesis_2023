@@ -1,0 +1,85 @@
+{
+    "nodes" : [
+        {
+            "id" : "id1",
+            "name" : "Solution 1",
+            "function" : "Research",
+            "data" : "User Interviews",
+            "solution-description" : "Solution 1 description",
+            "solution-owner" : "Olof Ingelsten",
+            "roles" : [
+                "PDE", "PDD"
+            ]
+        },
+        {
+            "id" : "id2",
+            "name" : "Solution 2",
+            "function" : "Data Analysis",
+            "data" : "Research Documentation",
+            "solution-description" : "Solution 2 description",
+            "solution-owner" : "Olof Ingelsten",
+            "roles" : [
+                "PDE", "PDD"
+            ]
+        },
+        {
+            "id" : "id3",
+            "name" : "Solution 3",
+            "function" : "Communication",
+            "data" : "Messages",
+            "solution-description" : "Solution 3 description",
+            "solution-owner" : "Inge Palm",
+            "roles" : [
+                "PDD"
+            ]
+        },
+        {
+            "id" : "id4",
+            "name" : "Solution 4",
+            "function" : "Design",
+            "data" : "Sketches",
+            "solution-description" : "Solution 4 description",
+            "solution-owner" : "Jonas Uddman",
+            "roles" : [
+                "PDE"
+            ]
+        },
+        {
+            "id" : "id5",
+            "name" : "Solution 5",
+            "function" : "Documentation",
+            "data" : "Internal Documents",
+            "solution-description" : "Solution 5 description",
+            "solution-owner" : "David Cuartielles",
+            "roles" : [
+                "PDE"
+            ]
+        }
+    ],
+    "links" : [
+        {
+            "source" : "id1",
+            "target" : "id2"
+        },
+        {
+            "source" : "id1",
+            "target" : "id3"
+        },
+        {
+            "source" : "id2",
+            "target" : "id4"
+        },
+        {
+            "source" : "id2",
+            "target" : "id5"
+        },
+        {
+            "source" : "id3",
+            "target" : "id2"
+        },
+        {
+            "source" : "id3",
+            "target" : "id1"
+        }
+    ]
+}
