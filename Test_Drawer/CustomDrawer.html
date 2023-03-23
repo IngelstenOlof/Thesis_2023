@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="button"
+      value="Drawer #1"
+      id="btn1"
+      onclick="createSolutionDrawer()"
+    />
+    <input type="button" value="Drawer #2" id="btn2" />
+
+    <script>
+      //Ideally pass in a reference to the JSON for text content
+      function createSolutionDrawer(id) {
+        //First check if one exists and delete it
+        if (document.querySelector(".drawer") != null) {
+          document.querySelector(".drawer").remove();
+        }
+
+        fetchJsonFile().then(solutions => {
+            console.log(solutions)
+        })
+
+        const drawer = `
+            <div class="drawer">
+                <div class="drawer-header">
+                    <h1>Solution Name</h1>
+                    <h2>Area</h2>
+                </div>
+            <hr>
+                <div class="drawer-users">
+                    <h2>Solution Owner</h2>
+                    <h3>Solution Owner</h3>
+                    <h2>Roles</h2>
+                    <div class="drawer-roles">
+                    </div>
+                </div>
+            <hr>
+                <div class="drawer-about">
+                    <h2>About</h2>
+                    <p>Lorem ipsum Dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.</p>
+                </div>
+            <hr>
+            </div>
+            `;
+
+            document.body.insertAdjacentHTML("beforeend", drawer)
+      }
+
+      async function fetchJsonFile() {
+        const res = await fetch("solutions.json")
+        const solutions = await res.json()
+        return solutions
+      }
+    </script>
+  </body>
+</html>

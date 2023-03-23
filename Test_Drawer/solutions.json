@@ -1,0 +1,23 @@
+{
+    "nodes" : [
+        {
+            "id" : "id1",
+            "name" : "IoS History ",
+            "area" : "Project & Range Mgmt",
+            "data" : "User Interviews",
+            "description" : "Solution 1 description",
+            "solution-owner" : "Olof Ingelsten",
+        },
+        {
+            "id" : "id2",
+            "name" : "Solution 2",
+            "area" : "Data Analysis",
+            "data" : "Research Documentation",
+            "solution-description" : "Solution 2 description",
+            "solution-owner" : "Olof Ingelsten",
+            "roles" : [
+                "PDE", "PDD"
+            ]
+        }
+    ]
+}
