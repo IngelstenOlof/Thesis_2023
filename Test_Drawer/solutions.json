@@ -2,22 +2,18 @@
     "nodes" : [
         {
             "id" : "id1",
-            "name" : "IoS History ",
+            "name" : "IoS History",
             "area" : "Project & Range Mgmt",
-            "data" : "User Interviews",
-            "description" : "Solution 1 description",
-            "solution-owner" : "Olof Ingelsten",
+            "owner" : "Karin Göransson",
+            "description" : "IOS History is a web application that offers a user to view images that has an IKEA historical value. In the application the user can upload images with a description attached. To access the applicaion the user must login. The application is used by IOS"
         },
         {
             "id" : "id2",
-            "name" : "Solution 2",
-            "area" : "Data Analysis",
-            "data" : "Research Documentation",
-            "solution-description" : "Solution 2 description",
-            "solution-owner" : "Olof Ingelsten",
-            "roles" : [
-                "PDE", "PDD"
-            ]
+            "name" : "CRC (Common Range Component for Integration)",
+            "area" : "Range Integration",
+            "owner" : "Filip Gustafsson",
+            "description" : "Integration point for access to Product Information. CRC provides a simplified model of all product information, which make it easier for systems/consumers to access the data."
         }
+
     ]
 }

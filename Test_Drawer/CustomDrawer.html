@@ -12,9 +12,9 @@
       type="button"
       value="Drawer #1"
       id="btn1"
-      onclick="createSolutionDrawer()"
+      onclick="createSolutionDrawer(0)"
     />
-    <input type="button" value="Drawer #2" id="btn2" />
+    <input type="button" value="Drawer #2" id="btn2" onclick="createSolutionDrawer(1)"/>
 
     <script>
       //Ideally pass in a reference to the JSON for text content
@@ -25,19 +25,21 @@
         }
 
         fetchJsonFile().then(solutions => {
-            console.log(solutions)
-        })
+            const name = solutions.nodes[id].name;
+            const area = solutions.nodes[id].area;
+            const owner = solutions.nodes[id].owner;
+            const description = solutions.nodes[id].description;
 
-        const drawer = `
+            const drawer = `
             <div class="drawer">
                 <div class="drawer-header">
-                    <h1>Solution Name</h1>
-                    <h2>Area</h2>
+                    <h1>${name}</h1>
+                    <h2>${area}</h2>
                 </div>
             <hr>
                 <div class="drawer-users">
                     <h2>Solution Owner</h2>
-                    <h3>Solution Owner</h3>
+                    <h3>${owner}</h3>
                     <h2>Roles</h2>
                     <div class="drawer-roles">
                     </div>
@@ -45,13 +47,16 @@
             <hr>
                 <div class="drawer-about">
                     <h2>About</h2>
-                    <p>Lorem ipsum Dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.</p>
+                    <p>${description}</p>
                 </div>
             <hr>
             </div>
             `;
 
             document.body.insertAdjacentHTML("beforeend", drawer)
+        })
+
+        
       }
 
       async function fetchJsonFile() {
