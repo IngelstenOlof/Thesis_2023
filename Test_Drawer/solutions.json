@@ -13,7 +13,53 @@
             "area" : "Range Integration",
             "owner" : "Filip Gustafsson",
             "description" : "Integration point for access to Product Information. CRC provides a simplified model of all product information, which make it easier for systems/consumers to access the data."
+        },
+        {
+            "id" : "id3",
+            "name" : "IKEA Price Point ",
+            "area" : "Sales Collaboration",
+            "owner" : "Jimmy Moberg",
+            "description" : "IKEA PricePoint is a solution used by IKEA of Sweden to support organization with a pricing methodology having capabilities to set recommended sales price and visualize price and quality ladders. It is primarily used in the product development process and when pricing the running range" 
+        },
+        {
+            "id" : "id4",
+            "name" : "RPD PPM ",
+            "area" : "Project & Range Mgmt",
+            "owner" : "Yezhisai Chandran",
+            "description" : "Range and Product Development PPM (RPD PPM) is used as a Project Portfolio Management Application for developing products at IKEA of Sweden and in PDC. All projects for News (DNP) & Improves will be created and handled in this tool."
+        },
+        {
+            "id" : "id5",
+            "name" : "PIA (Product Information Assistant)",
+            "area" : "Project & Range Mgmt",
+            "owner" : "Karin Göransson",
+            "description" : "PIA - Product Information Assistance, is an application used mainly at IOS, IKEA of Sweden, PDC and Market Specific hubs. PIA is used during the product development process to put in all necessary information about the specific product - to be able to sales start at a certain time. PIA has approximately 1700 users, users with different access. PIA Main functionality; PIA Main maintains information about the IKEA product that the suppliers, co-workers and customers need. Most of information is registered in both Swedish and English to later be translated into each local language using Pia Local. PIA Main supports the full life cycle for the product and it’s the base for all product information being presented on price tags, labels and Internet. In addition to PIA Main there are other systems and application necessary to provide complete information concerning the IKEA products.(Labels, documents, pictures, drawings etc.) PIA Main is also a tool for connect item to a certain project coming from Project Online. The intial forecast is given for an item in this area. Several Reports are built in PIA for follow-up. The Range Frames and Range Structure with BA/HFB/PRA/PA are mange in PIA as well. PIA Main is holding the framework for all parts in PIA"
         }
-
+    ],
+    "links" : [
+        {
+            "source" : "id1",
+            "target" : "id2"
+        },
+        {
+            "source" : "id1",
+            "target" : "id3"
+        },
+        {
+            "source" : "id2",
+            "target" : "id4"
+        },
+        {
+            "source" : "id2",
+            "target" : "id5"
+        },
+        {
+            "source" : "id3",
+            "target" : "id2"
+        },
+        {
+            "source" : "id3",
+            "target" : "id1"
+        }
     ]
 }
