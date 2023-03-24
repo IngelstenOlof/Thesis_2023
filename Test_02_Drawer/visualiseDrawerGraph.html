@@ -21,19 +21,23 @@
       function createDrawer(node) {
         //First check if one exists and delete it
         if (document.querySelector(".drawer") != null) {
-          if(document.querySelector(".drawer .drawer-header h1").innerHTML == node.name) {
+          //If the one that is instantiated is the same as clicked --> remove without creating a new
+          if (
+            document.querySelector(".drawer .drawer-header h1").innerHTML ==
+            node.name
+          ) {
             document.querySelector(".drawer").remove();
             return;
           }
           document.querySelector(".drawer").remove();
         }
 
-
         const name = node.name;
         const area = node.area;
         const owner = node.owner;
         const description = node.description;
 
+        //Template literal for drawer components
         const drawer = `
             <div class="drawer">
                 <div class="drawer-header">
@@ -57,6 +61,7 @@
             </div>
             `;
 
+        //Funkar typ samma som document.appendChild()
         document.body.insertAdjacentHTML("beforeend", drawer);
       }
 
@@ -74,19 +79,11 @@
             selectedNodes.has(node) ? "darkorange" : "grey"
           )
           .onNodeClick((node, event) => {
-            if (event.ctrlKey || event.shiftKey || event.altKey) {
-              //multi-selection
-              selectedNodes.has(node)
-                ? selectedNodes.delete(node)
-                : selectedNodes.add(node);
-            } else {
-              //single-selection
-              const untoggle =
-                selectedNodes.has(node) && selectedNodes.size == 1;
-              selectedNodes.clear();
-              !untoggle && selectedNodes.add(node);
-              createDrawer(node);
-            }
+            //single-selection
+            const untoggle = selectedNodes.has(node) && selectedNodes.size == 1;
+            selectedNodes.clear();
+            !untoggle && selectedNodes.add(node);
+            createDrawer(node);
 
             Graph.nodeColor(Graph.nodeColor()); //update colour of nodes
           })
