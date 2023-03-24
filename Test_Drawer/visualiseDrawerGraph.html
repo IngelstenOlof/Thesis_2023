@@ -21,6 +21,10 @@
       function createDrawer(node) {
         //First check if one exists and delete it
         if (document.querySelector(".drawer") != null) {
+          if(document.querySelector(".drawer .drawer-header h1").innerHTML == node.name) {
+            document.querySelector(".drawer").remove();
+            return;
+          }
           document.querySelector(".drawer").remove();
         }
 
