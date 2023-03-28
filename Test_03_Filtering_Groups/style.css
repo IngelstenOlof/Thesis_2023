@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --gray-1 : #333333;
+    --gray-2 : #4F4F4F;
+    --gray-3 : #828282;
+    --gray-4 : #BDBDBD;
+    --gray-5 : #E0E0E0;
+    --gray-6 : #F2F2F2;
+}
+
+h1 {
+    font-size: 40px;
+    color: var(--gray-1);
+    font-weight: 400;
+    line-height: 48px;
+    margin: 0;
+}
+h2 {
+    font-size: 24px;
+    color: var(--gray-1);
+    font-weight: 400;
+    line-height: 29px;
+    margin: 0;
+}
+h3 {
+    font-size: 16px;
+    color: var(--gray-2);
+    font-weight: 400;
+    line-height: 19px;
+    margin: 0;
+}
+p {
+    font-size: 12px;
+    color: var(--gray-2);
+    font-weight: 400;
+    line-height: 15px;
+    margin: 0;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid var(--gray-5);
+  }
+
+.drawer {
+background-color: var(--gray-6);
+box-shadow: 0px 0px 24px 4px rgba(0, 0, 0, 0.25);
+border-radius: 24px 0px 0px 24px;
+
+height: 100%;
+position: fixed;
+right: 0;
+bottom: 0;
+transition: right 400ms ease-in-out;
+z-index: 10;
+padding: 32px 24px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 12px;
+
+max-width: 33%;
+min-width: 22rem;
+}
+
+.close-drawer {
+    right: -100%;
+}
+
+.open-drawer {
+    right: 0;
+}

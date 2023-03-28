@@ -9,11 +9,23 @@
     <title>Document</title>
   </head>
   <body>
+    <input type="button" onclick="filterButton(this)" value="true">
+    <input type="button" onclick="filterButton(this)" value="Range Integration">
+    <input type="button" onclick="filterButton(this)" value="Sales Collaboration">
+    <input type="button" onclick="filterButton(this)" value="Project & Range Management">
+    <input type="button" onclick="filterButton(this)" value="Product Engineering & Requirements">
     <div id="graph"></div>
 
     <script>
+      let filterSetting = "true";
+
+      function filterButton(event) {
+        filterSetting = event.value;
+        console.log(filterSetting)
+      }
+
       async function fetchJsonFile() {
-        const res = await fetch("solutions.json");
+        const res = await fetch("../complete-solutions.json");
         const gData = await res.json();
         return gData;
       }
@@ -36,6 +48,9 @@
         const area = node.area;
         const owner = node.owner;
         const description = node.description;
+        const keyUserOne = node.user1;
+        const keyUserTwo = node.user2;
+        const keyUserThree = node.user3;
 
         //Template literal for drawer components
         const drawer = `
@@ -48,11 +63,11 @@
                 <div class="drawer-users">
                     <h2>Solution Owner</h2>
                     <h3>${owner}</h3>
-                    <h2>Roles</h2>
+                    ${keyUserOne == "" ? "": "<h2>Roles</h2>"}
                     <div class="drawer-roles">
-                      <h3>Key user #1</h3>
-                      <h3>Key user #2</h3>
-                      <h3>Key user #3</h3>
+                      <h3>${keyUserOne}</h3>
+                      <h3>${keyUserTwo}</h3>
+                      <h3>${keyUserThree}</h3>
                     </div>
                 </div>
             <hr>
@@ -73,22 +88,23 @@
       fetchJsonFile().then((gData) => {
         const Graph = ForceGraph()(document.getElementById("graph"))
           .graphData(gData)
-          .nodeId("id")
+          .nodeId("name")
           .linkSource("source")
           .linkTarget("target")
           .nodeLabel("name")
-          .nodeRelSize(8)
-          .nodeColor((node) =>
-            selectedNodes.has(node) ? "darkorange" : "grey"
-          )
+          .nodeRelSize(24)
+          .nodeAutoColorBy("area")
           .onNodeClick((node, event) => {
             //single-selection
             const untoggle = selectedNodes.has(node) && selectedNodes.size == 1;
             selectedNodes.clear();
             !untoggle && selectedNodes.add(node);
             createDrawer(node);
-
-            Graph.nodeColor(Graph.nodeColor()); //update colour of nodes
+          })
+          //.nodeVisibility(node => node.area == filterSetting)
+          .nodeVisibility(node => {
+            if(filterSetting == "true") return true;
+            return node.area == filterSetting;
           })
           .onNodeDrag((node, translate) => {
             if (selectedNodes.has(node)) {

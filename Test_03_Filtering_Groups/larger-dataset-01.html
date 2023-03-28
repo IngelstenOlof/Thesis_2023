@@ -13,7 +13,7 @@
 
     <script>
       async function fetchJsonFile() {
-        const res = await fetch("solutions.json");
+        const res = await fetch("../complete-solutions.json");
         const gData = await res.json();
         return gData;
       }
@@ -36,6 +36,9 @@
         const area = node.area;
         const owner = node.owner;
         const description = node.description;
+        const keyUserOne = node.user1;
+        const keyUserTwo = node.user2;
+        const keyUserThree = node.user3;
 
         //Template literal for drawer components
         const drawer = `
@@ -48,11 +51,11 @@
                 <div class="drawer-users">
                     <h2>Solution Owner</h2>
                     <h3>${owner}</h3>
-                    <h2>Roles</h2>
+                    ${keyUserOne == "" ? "": "<h2>Roles</h2>"}
                     <div class="drawer-roles">
-                      <h3>Key user #1</h3>
-                      <h3>Key user #2</h3>
-                      <h3>Key user #3</h3>
+                      <h3>${keyUserOne}</h3>
+                      <h3>${keyUserTwo}</h3>
+                      <h3>${keyUserThree}</h3>
                     </div>
                 </div>
             <hr>
@@ -73,7 +76,7 @@
       fetchJsonFile().then((gData) => {
         const Graph = ForceGraph()(document.getElementById("graph"))
           .graphData(gData)
-          .nodeId("id")
+          .nodeId("name")
           .linkSource("source")
           .linkTarget("target")
           .nodeLabel("name")
