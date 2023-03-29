@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/force-graph"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" data-tag="default" value="Show All" />
+    <input type="button" data-tag="area" value="Range Integration" />
+    <input type="button" data-tag="area" value="Sales Collaboration" />
+    <input type="button" data-tag="area" value="Project & Range Management" />
+    <input type="button" data-tag="area" value="Product Engineering & Requirements" />
+    <div id="graph"></div>
+
+    <script>
+      const buttons = document.querySelectorAll("input");
+      buttons.forEach(button => {
+        button.addEventListener("click", filterJsonFile, "false");
+      });
+
+      async function fetchJsonFile() {
+        const res = await fetch("../complete-solutions.json");
+        const jsonData = await res.json();
+        return jsonData;
+      }
+
+      function filterJsonFile(event) {
+        fetchJsonFile().then((json) => {
+          if (event.target.dataset.tag == "default") {
+            Graph.graphData(json);
+            return;
+          }
+          
+          let result = {
+            nodes: [],
+            links: [],
+          };
+          
+          for (let index in json.nodes) {
+            if (json.nodes[index][event.target.dataset.tag] == event.target.value) {
+              result.nodes.push(json.nodes[index]);
+            }
+          }
+          result.links = json.links;
+
+          Graph.graphData(result);
+        })
+      }
+      const Graph = ForceGraph();
+
+      fetchJsonFile().then((gData) => {
+        Graph(document.getElementById("graph"))
+          .graphData(gData)
+          .nodeId("name")
+          .linkSource("source")
+          .linkTarget("target")
+          .nodeLabel("name")
+          .nodeRelSize(24)
+          .nodeAutoColorBy("area");
+      });
+    </script>
+  </body>
+</html>
