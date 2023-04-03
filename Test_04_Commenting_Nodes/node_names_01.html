@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/force-graph"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Filter by:</h2>
+    <input type="button" data-tag="default" value="Show All" />
+    <input type="button" data-tag="area" value="Range Integration" />
+    <input type="button" data-tag="area" value="Sales Collaboration" />
+    <input type="button" data-tag="area" value="Project & Range Management" />
+    <input
+      type="button"
+      data-tag="area"
+      value="Product Engineering & Requirements"
+    />
+    <input type="button" data-tag="owner" value="Paula Bruniera" />
+    <input type="button" data-tag="owner" value="Anders Friberg" />
+    <input type="button" data-tag="owner" value="Karin Göransson" />
+    <div id="graph"></div>
+
+    <script>
+      //Add event listeners to all buttons for filtering functionality
+      const buttons = document.querySelectorAll("input");
+      buttons.forEach((button) => {
+        button.addEventListener("click", filterJsonFile, "false");
+      });
+
+      //Fetch and filter JSON for graphing visualisation
+      async function fetchJsonFile() {
+        const res = await fetch("../complete-solutions-02.json");
+        const jsonData = await res.json();
+
+        //En liten fuling för att fejka sammanhang
+        jsonData.links = jsonData.nodes.filter(node => node.name).map(node => ({
+          source: node,
+          target: jsonData.nodes[Math.round(Math.random() * 24)].name
+        }));
+
+        console.log(jsonData)
+        return jsonData;
+      }
+
+      function filterJsonFile(event) {
+        fetchJsonFile().then((json) => {
+          if (event.target.dataset.tag == "default") {
+            Graph.graphData(json);
+            return;
+          }
+
+          let result = {
+            nodes: [],
+            links: [],
+          };
+
+          for (let index in json.nodes) {
+            if (
+              json.nodes[index][event.target.dataset.tag] == event.target.value
+            ) {
+              result.nodes.push(json.nodes[index]);
+            }
+          }
+          result.links = json.links;
+
+          Graph.graphData(result);
+        });
+      }
+
+      //Dynamically create drawer from fetched JSON data
+      function createDrawer(node) {
+        //First check if one exists and delete it
+        if (document.querySelector(".drawer") != null) {
+          //If the one that is instantiated is the same as clicked --> remove without creating a new
+          if (
+            document.querySelector(".drawer .drawer-header h1").innerHTML ==
+            node.name
+          ) {
+            document.querySelector(".drawer").remove();
+            return;
+          }
+          document.querySelector(".drawer").remove();
+        }
+
+        const name = node.name;
+        const area = node.area;
+        const owner = node.owner;
+        const description = node.description;
+        const users = node.users;
+
+        const usersHtml = () => {
+          let string = ``;
+          for (user in users) {
+            string += `<h3>${users[user]}</h3>`;
+          }
+          return string;
+        };
+
+        //Template literal for drawer components
+        const drawer = `
+            <div class="drawer">
+                <div class="drawer-header">
+                    <h1>${name}</h1>
+                    <h2>${area}</h2>
+                </div>
+            <hr>
+                <div class="drawer-users">
+                    <h2>Solution Owner</h2>
+                    <h3>${owner}</h3>
+                    ${users.length > 0 ? "<h2>Roles</h2>" : ""}
+                    <div class="drawer-roles">
+                      ${usersHtml()}
+                    </div>
+                </div>
+            <hr>
+                <div class="drawer-about">
+                    <h2>About</h2>
+                    <p>${description}</p>
+                </div>
+                <hr>
+                <h2>Comments</h2>
+                <div class="drawer-comment">
+                  <div class="user-comment">
+                    <div class="user-content">
+                      <div class="comment-header">
+                        <h3><b>@User Name</b></h3>
+                        <p>Mar 30th</p>
+                      </div>
+                      <p>
+                      Lorem ipsum Dolor sit amet, consectetur adipiscing elit. Ut et
+                      massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien
+                      fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
+                      vitae mattis tellus. Nullam quis imperdiet augue.
+                      </p>
+                    </div>
+                  </div>
+                <textarea name="" id="comment" cols="30" rows="6"></textarea>
+               </div>
+            </div>
+            `;
+
+        //Funkar typ samma som document.appendChild()
+        document.body.insertAdjacentHTML("beforeend", drawer);
+      }
+
+      //All code relevant to graph initialisation and settings
+      const Graph = ForceGraph();
+
+      fetchJsonFile().then((gData) => {
+        Graph(document.getElementById("graph"))
+          .graphData(gData)
+          .nodeId("name")
+          .linkSource("source")
+          .linkTarget("target")
+          .nodeLabel("name")
+          .nodeRelSize(24)
+          .nodeAutoColorBy("area")
+          .onNodeClick((node, event) => {
+            createDrawer(node);
+          })
+          .nodeCanvasObject((node, ctx, globalScale) => {
+            const label = node.name;
+            const fontSize = 12 / globalScale;
+            ctx.font = `${fontSize}px Sans-Serif`;
+            const textWidth = ctx.measureText(label).width;
+            const bckgDimensions = [textWidth, fontSize].map(
+              (n) => n + fontSize * 0.2
+            ); // some padding
+
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.fillRect(
+              node.x - bckgDimensions[0] / 2,
+              node.y - bckgDimensions[1] / 2,
+              ...bckgDimensions
+            );
+
+            ctx.beginPath();
+            ctx.fillStyle = node.color;
+            ctx.arc(node.x, node.y, 12/globalScale, 0, 2 * Math.PI)
+            ctx.fill();
+
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#333333";
+            ctx.fillText(label, node.x, node.y);
+
+            node.__bckgDimensions = bckgDimensions; // to re-use in nodePointerAreaPaint
+          });
+      });
+    </script>
+  </body>
+</html>

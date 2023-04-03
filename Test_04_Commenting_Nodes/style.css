@@ -57,7 +57,6 @@ height: 100%;
 position: fixed;
 right: 0;
 bottom: 0;
-transition: right 400ms ease-in-out;
 z-index: 10;
 padding: 32px 24px;
 display: flex;
@@ -67,6 +66,8 @@ gap: 12px;
 
 max-width: 33%;
 min-width: 22rem;
+
+overflow-y: scroll;
 }
 
 .user-comment {
@@ -105,4 +106,5 @@ min-width: 22rem;
     border: 1px solid var(--gray-4);
     border-radius: 8px;
     padding: 8px;
+    margin-top: 12px;
 }
