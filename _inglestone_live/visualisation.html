@@ -4,22 +4,229 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="//unpkg.com/force-graph"></script>
-    <link rel="stylesheet" href="src/style.css" />
-    <title>System Visualisation</title>
+    <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://storage.googleapis.com/www.inglestone.art/_inglestone_live/src/style.css"
+      type="text/css"
+    />
+    <title>Solution Overview</title>
   </head>
   <body>
-    <h2>Filter by:</h2>
-    <input type="button" data-tag="default" value="Show All" />
-    <input type="button" data-tag="area" value="Range Integration" />
-    <input type="button" data-tag="area" value="Sales Collaboration" />
-    <input type="button" data-tag="area" value="Project & Range Management" />
-    <input type="button" data-tag="area" value="Product Engineering & Requirements"/>
-    <input type="button" data-tag="owner" value="1" />
-    <input type="button" data-tag="owner" value="2" />
-    <input type="button" data-tag="owner" value="3" />
+      <input type="checkbox" name="RI" id="area" data-tag="area" value="Range Integration"/>
+      <label for="RI">Range Integration</label>
+      <input type="checkbox" name="SC" id="area" data-tag="area" value="Sales Collaboration"/>
+      <label for="SC">Sales Collaboration</label>
+      <input type="checkbox" name="PRM" id="area" data-tag="area" value="Project & Range Management"/>
+      <label for="PRM">Project & Range Management</label>
+      <input type="checkbox" name="PER" id="area" data-tag="area" value="Product Engineering & Requirements"/>
+      <label for="PER">Product Engineering & Requirements</label>
     <div id="graph"></div>
 
-    <script src="src/script.js"></script>
+    <script src="./src/filtering.js"></script>
+    <script>
+      function generateJson() {
+        const names = [
+          "FurniPro",
+          "HomeGenius",
+          "RoomPlanner",
+          "Decor8",
+          "FurniDesign",
+          "Interior",
+          "Decorize",
+          "HomeStyler",
+          "HomeBuilder",
+          "MÖBLERA",
+          "INNERSTAD",
+        ];
+        const users = [
+          "Business Leader",
+          "Retail",
+          "Customer Specialist",
+          "Helpdesk",
+          "Administrators",
+          "Project Controller",
+          "Support",
+          "Retail",
+          "Engineers",
+          "Designers",
+          "Team Leaders",
+          "Quality Assurance",
+          "Suppliers",
+        ];
+        const areas = [
+          "Range Integration",
+          "Sales Collaboration",
+          "Project & Range Management",
+          "Product Engineering & Requirements",
+        ];
+        const owners = [
+          "H. G. Wells",
+          "Jules Verne",
+          "Orson Scott Card",
+          "George Orwell",
+          "Isaac Asimov",
+          "Robert Heinlein",
+          "Frank Herbert",
+        ];
+        const descriptions =
+          "Lorem ipsum Dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue.";
+        const tags = [
+          "Design",
+          "Research",
+          "UX",
+          "Textile",
+          "Sales",
+          "Development",
+          "Technology",
+        ];
+
+        const N = 60;
+        const graphData = {
+          nodes: [...Array(N).keys()].map((i) => ({
+            id: i,
+            name: names[returnRandom(names)],
+            owner: owners[returnRandom(owners)],
+            area: areas[returnRandom(areas)],
+            description: descriptions,
+            users: [
+              users[returnRandom(users)],
+              users[returnRandom(users)],
+              users[returnRandom(users)],
+            ],
+            tags: [
+              tags[returnRandom(tags)],
+              tags[returnRandom(tags)],
+              tags[returnRandom(tags)],
+            ],
+          })),
+          links: [...Array(N).keys()]
+            .filter((id) => id)
+            .map((id) => ({
+              source: id,
+              target: Math.round(Math.random() * (id - 1)),
+            })),
+        };
+        return graphData;
+      }
+
+      function returnRandom(obj) {
+        return Math.round(Math.random() * (obj.length - 1));
+      }
+
+      //Dynamically create drawer from fetched JSON data
+      function createDrawer(node) {
+        //First check if one exists and delete it
+        if (document.querySelector(".drawer") != null) {
+          //If the one that is instantiated is the same as clicked --> remove without creating a new
+          if (
+            document.querySelector(".drawer .drawer-header h1").innerHTML ==
+            node.name
+          ) {
+            document.querySelector(".drawer").remove();
+            return;
+          }
+          document.querySelector(".drawer").remove();
+        }
+
+        const name = node.name;
+        const area = node.area;
+        const owner = node.owner;
+        const description = node.description;
+        const users = node.users;
+
+        const usersHtml = () => {
+          let string = ``;
+          for (user in users) {
+            string += `<h3>${users[user]}</h3>`;
+          }
+          return string;
+        };
+
+        //Template literal for drawer components
+        const drawer = `
+            <div class="drawer">
+                <div class="drawer-header">
+                    <h1>${name}</h1>
+                    <h2>${area}</h2>
+                </div>
+            <hr>
+                <div class="drawer-users">
+                    <h2>Solution Owner</h2>
+                    <h3>${owner}</h3>
+                    ${users.length > 0 ? "<h2>Roles</h2>" : ""}
+                    <div class="drawer-roles">
+                      ${usersHtml()}
+                    </div>
+                </div>
+            <hr>
+                <div class="drawer-about">
+                    <h2>About</h2>
+                    <p>${description}</p>
+                </div>
+            <hr>
+            </div>
+            `;
+
+        //Funkar typ samma som document.appendChild()
+        console.log("wd");
+
+        document.body.insertAdjacentHTML("beforeend", drawer);
+      }
+
+      //Add event listeners to all buttons for filtering functionality
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach((input) => {
+        input.addEventListener("click", filterJsonFile, "false");
+      });
+
+      function filterJsonFile(event) {
+        if (event.target.dataset.tag == "default") {
+          Graph.graphData(graphData);
+          return;
+        }
+
+        if(event.target.checked) {
+          for (let index in graphData.nodes) {
+            if (
+              graphData.nodes[index][event.target.dataset.tag] == event.target.value
+            ) {
+              filteredGraph.nodes.push(graphData.nodes[index]);
+            }
+          }
+        } else if(!event.target.checked) {
+          for (let index in graphData.nodes) {
+            if (
+              graphData.nodes[index][event.target.dataset.tag] == event.target.value
+            ) {
+              filteredGraph.nodes.pop(graphData.nodes[index]);
+            }
+          } 
+        }
+
+
+        
+        Graph.graphData(filteredGraph);
+      }
+      
+      let filteredGraph = {
+        nodes: [],
+        links: [],
+      };
+      const graphData = generateJson();
+      filteredGraph.links = graphData.links;
+      const Graph = ForceGraph();
+      Graph(document.getElementById("graph"))
+        .graphData(graphData)
+        .nodeId("id")
+        .nodeLabel("name")
+        .nodeAutoColorBy("area")
+        .linkSource("source")
+        .nodeRelSize(8)
+        .linkTarget("target")
+        .onNodeClick((node, event) => {
+          createDrawer(node);
+        });
+    </script>
   </body>
 </html>
