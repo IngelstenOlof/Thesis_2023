@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="filter_popup.css">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="Filter solutions" id="filterBtn">
+
+    <div class="filter-popup-container show">
+        <div class="filter-segment">
+            <h2>Area</h2>
+            <hr>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <input type="checkbox" name="RI" id="Range Integration">
+                    <label for="RI">Range Integration</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="SC" id="Sales Collaboration">
+                    <label for="SC">Sales Collaboration</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="PRM" id="Product & Range Management">
+                    <label for="PRM">Product & Range Management</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="PER" id="Product Engineering & Requirements">
+                    <label for="PER">Product Engineering & Requirements</label>
+                </div>
+            </div>
+        </div>
+        <div class="filter-segment">
+            <h2>Users</h2>
+            <hr>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <input type="checkbox" name="Business Leader" id="Business Leader">
+                    <label for="PDE">Business Leader</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Retail" id="Retail">
+                    <label for="Retail">Retail</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Customer Specialist" id="Customer Specialist">
+                    <label for="Customer Specialist">Customer Specialist</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Helpdesk" id="Helpdesk">
+                    <label for="Helpdesk">Helpdesk</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Administrators" id="Administrators">
+                    <label for="Administrators">Administrators</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Project Controller" id="Project Controller">
+                    <label for="Project Controller">Project Controller</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Support" id="Support">
+                    <label for="Support">Support</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Engineers" id="Engineers">
+                    <label for="Engineers">Engineers</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Designers" id="Designers">
+                    <label for="Designers">Designers</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Team Leaders" id="Team Leaders">
+                    <label for="Team Leaders">Team Leaders</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Quality Assurance" id="Quality Assurance">
+                    <label for="Quality Assurance">Quality Assurance</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Suppliers" id="Suppliers">
+                    <label for="Suppliers">Suppliers</label>
+                </div>
+            </div>
+        </div>
+        <div class="filter-segment">
+            <h2>Tags</h2>
+            <hr>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <input type="checkbox" name="Design" id="Design">
+                    <label for="Design">Design</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Research" id="Research">
+                    <label for="Research">Research</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="UX" id="UX">
+                    <label for="UX">UX</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Textile" id="Textile">
+                    <label for="Textile">Textile</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Sales" id="Sales">
+                    <label for="Sales">Sales</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Development" id="Development">
+                    <label for="Development">Development</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Technology" id="Technology">
+                    <label for="Technology">Technology</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById("filterBtn")
+        btn.addEventListener("click", () => {
+            const filterContainer = document.querySelector(".filter-popup-container");
+            filterContainer.classList.toggle("show")
+        })
+    </script>
+</body>
+</html>
+
+<!-- <div class="filter-segment">
+    <h2>Header</h2>
+    <hr>
+    <div class="checkbox-container">
+        <div class="checkbox">
+            <input type="checkbox" name="" id="">
+            <label for=""></label>
+        </div>
+    </div>
+</div> -->
