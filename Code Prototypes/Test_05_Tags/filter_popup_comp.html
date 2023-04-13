@@ -9,138 +9,202 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="button" value="Filter solutions" id="filterBtn">
+    <div class="filter-button-menu">
+        <div class="filter-menu-item">
+            <input type="button" value="Area" class="filterButton" id="filterArea">
+            <div class="filter-popup-container Area" id="popup_area">
+                <div class="filter-segment">
+                    <h2>Area</h2>
+                    <hr>
+                    <div class="checkbox-container">
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="area" name="Range Intergration" id="Range Integration">
+                            <label for="Range Integration">Range Integration</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="area" name="Sale Collaboration" id="Sales Collaboration">
+                            <label for="Sales Collaboration">Sales Collaboration</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="area" name="Product & Range Management" id="Product & Range Management">
+                            <label for="Product & Range Management">Product & Range Management</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="area" name="Product Engineering & Requirements" id="Product Engineering & Requirements">
+                            <label for="Product Engineering & Requirements">Product Engineering & Requirements</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-menu-item">
+            <input type="button" value="Users" class="filterButton" id="filterUsers">
+            <div class="filter-popup-container Users" id="popup_users">
+                <div class="filter-segment">
+                    <h2>Users</h2>
+                    <hr>
+                    <div class="checkbox-container">
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Business Leader" id="Business Leader">
+                            <label for="Business Leader">Business Leader</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Retail" id="Retail">
+                            <label for="Retail">Retail</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Customer Specialist" id="Customer Specialist">
+                            <label for="Customer Specialist">Customer Specialist</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Helpdesk" id="Helpdesk">
+                            <label for="Helpdesk">Helpdesk</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Administrators" id="Administrators">
+                            <label for="Administrators">Administrators</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Project Controller" id="Project Controller">
+                            <label for="Project Controller">Project Controller</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Support" id="Support">
+                            <label for="Support">Support</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Engineers" id="Engineers">
+                            <label for="Engineers">Engineers</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Designers" id="Designers">
+                            <label for="Designers">Designers</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Team Leaders" id="Team Leaders">
+                            <label for="Team Leaders">Team Leaders</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Quality Assurance" id="Quality Assurance">
+                            <label for="Quality Assurance">Quality Assurance</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="users" name="Suppliers" id="Suppliers">
+                            <label for="Suppliers">Suppliers</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-menu-item">
+            <input type="button" value="Process" class="filterButton" id="filterProcess">
+            <div class="filter-popup-container Process" id="popup_process">
+                    <div class="filter-segment">
+                        <h2>Process</h2>
+                        <hr>
+                        <div class="checkbox-container">
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="process" name="process_1" id="process_1">
+                                <label for="process_1">Process_1</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="process" name="process_2" id="process_2">
+                                <label for="process_2">Process_2</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="process" name="process_3" id="process_3">
+                                <label for="process_3">Process_3</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="process" name="process_4" id="process_4">
+                                <label for="process_4">Process_4</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="filter-menu-item">
+            <input type="button" value="Tags" class="filterButton" id="filterTags">
+            <div class="filter-popup-container Tags" id="popup_tags">
+                <div class="filter-segment">
+                    <h2>Tags</h2>
+                    <hr>
+                    <div class="checkbox-container">
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Design" id="Design">
+                            <label for="Design">Design</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Research" id="Research">
+                            <label for="Research">Research</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="UX" id="UX">
+                            <label for="UX">UX</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Textile" id="Textile">
+                            <label for="Textile">Textile</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Sales" id="Sales">
+                            <label for="Sales">Sales</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Development" id="Development">
+                            <label for="Development">Development</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" data-tag="tags" name="Technology" id="Technology">
+                            <label for="Technology">Technology</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="filter-popup-container show">
-        <div class="filter-segment">
-            <h2>Area</h2>
+    <div class="filtered-nodes-box">
+        <h2>Filtered nodes</h2>
+        <hr>
+        <div class="filtered-solution">
+            <h3>Solution name</h3>
+            <p>Area</p>
             <hr>
-            <div class="checkbox-container">
-                <div class="checkbox">
-                    <input type="checkbox" name="RI" id="Range Integration">
-                    <label for="RI">Range Integration</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="SC" id="Sales Collaboration">
-                    <label for="SC">Sales Collaboration</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="PRM" id="Product & Range Management">
-                    <label for="PRM">Product & Range Management</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="PER" id="Product Engineering & Requirements">
-                    <label for="PER">Product Engineering & Requirements</label>
-                </div>
-            </div>
         </div>
-        <div class="filter-segment">
-            <h2>Users</h2>
+        <div class="filtered-solution">
+            <h3>Solution name</h3>
+            <p>Area</p>
             <hr>
-            <div class="checkbox-container">
-                <div class="checkbox">
-                    <input type="checkbox" name="Business Leader" id="Business Leader">
-                    <label for="PDE">Business Leader</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Retail" id="Retail">
-                    <label for="Retail">Retail</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Customer Specialist" id="Customer Specialist">
-                    <label for="Customer Specialist">Customer Specialist</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Helpdesk" id="Helpdesk">
-                    <label for="Helpdesk">Helpdesk</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Administrators" id="Administrators">
-                    <label for="Administrators">Administrators</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Project Controller" id="Project Controller">
-                    <label for="Project Controller">Project Controller</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Support" id="Support">
-                    <label for="Support">Support</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Engineers" id="Engineers">
-                    <label for="Engineers">Engineers</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Designers" id="Designers">
-                    <label for="Designers">Designers</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Team Leaders" id="Team Leaders">
-                    <label for="Team Leaders">Team Leaders</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Quality Assurance" id="Quality Assurance">
-                    <label for="Quality Assurance">Quality Assurance</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Suppliers" id="Suppliers">
-                    <label for="Suppliers">Suppliers</label>
-                </div>
-            </div>
         </div>
-        <div class="filter-segment">
-            <h2>Tags</h2>
+        <div class="filtered-solution">
+            <h3>Solution name</h3>
+            <p>Area</p>
             <hr>
-            <div class="checkbox-container">
-                <div class="checkbox">
-                    <input type="checkbox" name="Design" id="Design">
-                    <label for="Design">Design</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Research" id="Research">
-                    <label for="Research">Research</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="UX" id="UX">
-                    <label for="UX">UX</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Textile" id="Textile">
-                    <label for="Textile">Textile</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Sales" id="Sales">
-                    <label for="Sales">Sales</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Development" id="Development">
-                    <label for="Development">Development</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="Technology" id="Technology">
-                    <label for="Technology">Technology</label>
-                </div>
-            </div>
+        </div>
+        <div class="filtered-solution">
+            <h3>Solution name</h3>
+            <p>Area</p>
+            <hr>
         </div>
     </div>
 
     <script>
-        const btn = document.getElementById("filterBtn")
-        btn.addEventListener("click", () => {
-            const filterContainer = document.querySelector(".filter-popup-container");
-            filterContainer.classList.toggle("show")
+        //Code for makig the filter button popups to work
+        const filterBtns = document.querySelectorAll(".filterButton")
+        console.log(filterBtns)
+        const filterPopups = document.querySelectorAll(".filter-popup-container");
+        console.log(filterPopups)
+
+        filterBtns.forEach((filterBtn) => {
+            filterBtn.addEventListener("click", () => {
+                filterPopups.forEach((popup) => {
+                    if(popup.classList.contains(filterBtn.value)) {
+                      popup.classList.toggle("show");
+                  } 
+                })
+            })
         })
     </script>
 </body>
 </html>
-
-<!-- <div class="filter-segment">
-    <h2>Header</h2>
-    <hr>
-    <div class="checkbox-container">
-        <div class="checkbox">
-            <input type="checkbox" name="" id="">
-            <label for=""></label>
-        </div>
-    </div>
-</div> -->
