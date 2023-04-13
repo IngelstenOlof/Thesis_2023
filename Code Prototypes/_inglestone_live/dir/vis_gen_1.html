@@ -107,6 +107,8 @@
               target: Math.round(Math.random() * (id - 1)),
             })),
         };
+
+        console.log(graphData)
         return graphData;
       }
 
@@ -186,7 +188,10 @@
           return;
         }
 
+        //TODO: Filter and sanitise the new links between nodes
+        //When checkbox == true
         if(event.target.checked) {
+          //Iterate over graphData and add the corresponding nodes to filteredList
           for (let index in graphData.nodes) {
             if (
               graphData.nodes[index][event.target.dataset.tag] == event.target.value
@@ -194,6 +199,7 @@
               filteredGraph.nodes.push(graphData.nodes[index]);
             }
           }
+          //Checkbox == false --> remove nodes and links from list
         } else if(!event.target.checked) {
           for (let index in graphData.nodes) {
             if (
@@ -204,8 +210,6 @@
           } 
         }
 
-
-        
         Graph.graphData(filteredGraph);
       }
       
@@ -214,6 +218,7 @@
         links: [],
       };
       const graphData = generateJson();
+      //This breaks the filtering -----------------------------------------------------------------------------------------
       filteredGraph.links = graphData.links;
       const Graph = ForceGraph();
       Graph(document.getElementById("graph"))
@@ -230,3 +235,36 @@
     </script>
   </body>
 </html>
+
+
+<!-- 
+function filterJsonFile(event) {
+        if (event.target.dataset.tag == "default") {
+          Graph.graphData(graphData);
+          return;
+        }
+
+        //TODO: Filter and sanitise the new links between nodes
+        //When checkbox == true
+        if(event.target.checked) {
+          //Iterate over graphData and add the corresponding nodes to filteredList
+          for (let index in graphData.nodes) {
+            if (
+              graphData.nodes[index][event.target.dataset.tag] == event.target.value
+            ) {
+              filteredGraph.nodes.push(graphData.nodes[index]);
+            }
+          }
+          //Checkbox == false -> remove nodes and links from list
+        } else if(!event.target.checked) {
+          for (let index in graphData.nodes) {
+            if (
+              graphData.nodes[index][event.target.dataset.tag] == event.target.value
+            ) {
+              filteredGraph.nodes.pop(graphData.nodes[index]);
+            }
+          } 
+        }
+
+        Graph.graphData(filteredGraph);
+      } -->
