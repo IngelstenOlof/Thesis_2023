@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../src/filter.css">
+    <link rel="stylesheet" href="../src/drawer.css">
+    <title>Solution Overview</title>
+  </head>
+  <body>
+    <div class="top-bar fr">
+      <input type="search" name="search" id="search" placeholder="Search...">
+      <div class="filter-button-menu fr">
+          <div class="filter-menu-item">
+              <input type="button" value="Area" class="filterButton" id="filterArea">
+              <div class="filter-popup-container fc Area" id="popup_area">
+                  <div class="filter-segment fc">
+                      <h2>Area</h2>
+                      <div class="checkbox-container fc">
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Range Integration" id="Range Integration">
+                              <label for="Range Integration">Range Integration</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Sales Collaboration" id="Sales Collaboration">
+                              <label for="Sales Collaboration">Sales Collaboration</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Project & Range Management" id="Project & Range Management">
+                              <label for="Project & Range Management">Project & Range Management</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Product Engineering & Requirements" id="Product Engineering & Requirements">
+                              <label for="Product Engineering & Requirements">Product Engineering & Requirements</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Users" class="filterButton" id="filterUsers">
+              <div class="filter-popup-container fc Users" id="popup_users">
+                  <div class="filter-segment fc">
+                      <h2>Users</h2>
+                      <div class="checkbox-container fc">
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Business Leader" id="Business Leader">
+                              <label for="Business Leader">Business Leader</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Retail" id="Retail">
+                              <label for="Retail">Retail</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Customer Specialist" id="Customer Specialist">
+                              <label for="Customer Specialist">Customer Specialist</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Helpdesk" id="Helpdesk">
+                              <label for="Helpdesk">Helpdesk</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Administrators" id="Administrators">
+                              <label for="Administrators">Administrators</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Project Controller" id="Project Controller">
+                              <label for="Project Controller">Project Controller</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Support" id="Support">
+                              <label for="Support">Support</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Engineers" id="Engineers">
+                              <label for="Engineers">Engineers</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Designers" id="Designers">
+                              <label for="Designers">Designers</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Team Leaders" id="Team Leaders">
+                              <label for="Team Leaders">Team Leaders</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Quality Assurance" id="Quality Assurance">
+                              <label for="Quality Assurance">Quality Assurance</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="users" name="Suppliers" id="Suppliers">
+                              <label for="Suppliers">Suppliers</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Process" class="filterButton" id="filterProcess">
+              <div class="filter-popup-container fc Process" id="popup_process">
+                      <div class="filter-segment fc">
+                          <h2>Process</h2>
+                          <div class="checkbox-container fc">
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_1" id="process_1">
+                                  <label for="process_1">Process_1</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_2" id="process_2">
+                                  <label for="process_2">Process_2</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_3" id="process_3">
+                                  <label for="process_3">Process_3</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_4" id="process_4">
+                                  <label for="process_4">Process_4</label>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Tags" class="filterButton" id="filterTags">
+              <div class="filter-popup-container fc Tags" id="popup_tags">
+                  <div class="filter-segment fc">
+                      <h2>Tags</h2>
+                      <div class="checkbox-container fc">
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Design" id="Design">
+                              <label for="Design">Design</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Research" id="Research">
+                              <label for="Research">Research</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="UX" id="UX">
+                              <label for="UX">UX</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Textile" id="Textile">
+                              <label for="Textile">Textile</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Sales" id="Sales">
+                              <label for="Sales">Sales</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Development" id="Development">
+                              <label for="Development">Development</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Technology" id="Technology">
+                              <label for="Technology">Technology</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="filtered-nodes-box fc">
+    <div class="filter-header fc">
+        <h2>Filtered solutions</h2>
+        <div class="filter-header-options fr">
+            <h3><span id="filteredSolutionAmount">0</span>/60</h3>
+            <input type="button" value="Clear filter" id="clearFilter">
+        </div>
+    </div>  
+    <div class="filtered-nodes-container fc">
+    </div>
+</div>
+   
+    <div id="graph"></div>
+    <script>
+      //Code for makig the filter button popups to work
+      const filterBtns = document.querySelectorAll(".filterButton")
+        const filterPopups = document.querySelectorAll(".filter-popup-container");
+
+        filterBtns.forEach((filterBtn) => {
+            filterBtn.addEventListener("click", () => {
+                filterPopups.forEach((popup) => {
+                    if(popup.classList.contains(filterBtn.value)) {
+                      popup.classList.toggle("show");
+                  } 
+                })
+            })
+        })
+
+         //Add event listeners to all checkboxes for filtering functionality
+      const filterCheckboxes = document.querySelectorAll(".checkbox input");
+      filterCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("click", filterJsonFile, "false");
+      });
+
+      function generateJson() {
+        const names = [
+          "MÖCKELN",
+          "AGUNNARYD",
+          "DIGITAL",
+          "MATERIAL",
+          "INSEXNYCKEL",
+          "SKRUV",
+          "INTERIÖR",
+          "DEKORERA",
+          "STILIG",
+          "HEMTREVLIG",
+          "MÖBLERA",
+          "INNERSTAD",
+          "STOLSBEN",
+          "MJUKIS",
+          "ÄLMHULT",
+          "INREDNING",
+          "KONSTIG",
+          "VÄNLIG",
+          "EXAMEN",
+          "LJUNGBY",
+          "RÖDLJUS",
+          "HÄRLIG"
+        ];
+        const users = [
+          "Business Leader",
+          "Retail",
+          "Customer Specialist",
+          "Helpdesk",
+          "Administrators",
+          "Project Controller",
+          "Support",
+          "Retail",
+          "Engineers",
+          "Designers",
+          "Team Leaders",
+          "Quality Assurance",
+          "Suppliers",
+        ];
+        const areas = [
+          "Range Integration",
+          "Sales Collaboration",
+          "Project & Range Management",
+          "Product Engineering & Requirements",
+        ];
+        const owners = [
+          "H. G. Wells",
+          "Jules Verne",
+          "Orson Scott Card",
+          "George Orwell",
+          "Isaac Asimov",
+          "Robert Heinlein",
+          "Frank Herbert",
+          "Olof Ingelsten",
+          "Ingvar Kamprad"
+        ];
+        const descriptions =
+          "Experience the ultimate furniture shopping experience with TEST, the intelligent furniture recommendation engine powered by advanced machine learning algorithms. TEST uses data analytics to analyze customer preferences, purchasing behavior, and other factors to provide personalized recommendations that match their unique tastes and needs.";
+        const tags = [
+          "Design",
+          "Research",
+          "UX",
+          "Textile",
+          "Sales",
+          "Development",
+          "Technology",
+        ];
+
+        const N = 60;
+        const graphData = {
+          nodes: [...Array(N).keys()].map((i) => ({
+            id: i,
+            name: names[returnRandom(names)],
+            owner: owners[returnRandom(owners)],
+            area: areas[returnRandom(areas)],
+            description: descriptions,
+            users: [
+              users[returnRandom(users)],
+              users[returnRandom(users)],
+              users[returnRandom(users)],
+            ],
+            tags: [
+              tags[returnRandom(tags)],
+              tags[returnRandom(tags)],
+              tags[returnRandom(tags)],
+            ],
+          })),
+          links: [...Array(N).keys()]
+            .filter((id) => id)
+            .map((id) => ({
+              source: id,
+              target: Math.round(Math.random() * (id - 1)),
+            })),
+        };
+
+        console.log(graphData)
+        return graphData;
+      }
+
+      function returnRandom(obj) {
+        return Math.round(Math.random() * (obj.length - 1));
+      }
+
+      //Dynamically create drawer from fetched JSON data
+      function createDrawer(node) {
+        //First check if one exists and delete it
+        if (document.querySelector(".drawer") != null) {
+          //If the one that is instantiated is the same as clicked --> remove without creating a new
+          if (
+            document.querySelector(".drawer .drawer-header h1").innerHTML ==
+            node.name
+          ) {
+            document.querySelector(".drawer").remove();
+            return;
+          }
+          document.querySelector(".drawer").remove();
+        }
+
+        const name = node.name;
+        const area = node.area;
+        const owner = node.owner;
+        const description = node.description;
+        const users = node.users;
+        
+        const popUsers = () => {
+          let string = ``;
+          for (user in users) {
+            string += `<h4>${users[user]}</h4>`;
+          }
+          return string;
+        };
+        
+        const popIngoing = () => {
+          let string = ``;
+          
+          for(index in graphData.links) {
+            if(graphData.links[index].target.id == node.id) {
+              console.log("här ")
+              string += `
+               <div class="drawer-data-comp fr">
+                 <p>Data point</p>
+                 <p>from</p>
+                 <p>${graphData.links[index].source.name}</p>
+               </div>
+               `;
+            }
+          }
+          return string;
+        };
+
+        const popOutgoing = () => {
+          let string = ``;
+          
+          for(index in graphData.links) {
+            if(graphData.links[index].source.id == node.id) {
+              string += `
+               <div class="drawer-data-comp fr">
+                 <p>Data point</p>
+                 <p>to</p>
+                 <p>${graphData.links[index].target.name}</p>
+               </div>
+               `;
+            }
+          }
+          return string;
+        };
+
+        //Template literal for drawer components
+        const drawer = `
+        <div class="drawer fc">
+    <div class="drawer-buttons fr">
+        <button class="edit-button-icon"></button>
+        <button class="close-button-icon"></button>
+    </div>
+    <div class="drawer-content fc">
+        <div class="drawer-header fc">
+            <h1>${name}</h1>
+            <h2>${area}</h2>
+        </div>
+        <div class="drawer-users fc">
+            <h3>@${owner}</h3>
+            <div class="drawer-keyusers fc">
+                ${popUsers()}
+            </div>
+        </div>
+        <div class="drawer-about fc">
+            <h2>About</h2>
+            <h4>Description</h4>
+            <p>${description}</p>
+            <h4>Processes</h4>
+            <ul>
+                <li>Process 1</li>
+                <li>Process 2</li>
+                <li>Process 3</li>
+            </ul>
+        </div>
+        <div class="drawer-data fc">
+            <h2>Data</h2>
+            <div class="drawer-data-container fc">
+                <h3>Ingoing</h3>
+                <div class="drawer-data-content fc">
+                  ${popIngoing()}
+                </div>
+            </div>
+            <div class="drawer-data-container">
+                <h3>Outgoing</h3>
+                <div class="drawer-data-content">
+                    ${popOutgoing()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            `;
+
+        //Funkar typ samma som document.appendChild()
+        document.body.insertAdjacentHTML("beforeend", drawer);
+      }
+
+      function populateFilterDialogue() {
+        //för varje elemnt i filterDialogue() så skapa en liten htmlgrej och appenda till "Filtered Solutions"
+        //Töm den först
+        const _compFilterDialogue = document.querySelector(".filtered-nodes-container");
+        const _compSolutionAmount = document.getElementById("filteredSolutionAmount")
+
+        _compSolutionAmount.innerHTML = filterDialogue.size
+
+        while(_compFilterDialogue.firstChild) _compFilterDialogue.removeChild(_compFilterDialogue.firstChild)
+
+        filterDialogue.forEach((solution) => {
+          const _compFilteredSolution = `
+          <div class="filtered-solution">
+            <h3>${solution.name}</h3>
+            <p>${solution.area}</p>
+          </div>
+          `;
+
+          _compFilterDialogue.insertAdjacentHTML("beforeend", _compFilteredSolution);
+        })
+      }
+
+      function filterJsonFile(event) {
+        //TODO: Filter and sanitise the new links between nodes
+        //When checkbox == true
+        if(event.target.checked) {
+          //Iterate over graphData and add the corresponding nodes to filteredNodes
+          for (let index in graphData.nodes) {
+            if (graphData.nodes[index][event.target.dataset.tag] == event.target.name) {
+              filteredNodes.add(graphData.nodes[index][event.target.dataset.tag]);
+              filterDialogue.add(graphData.nodes[index]);
+              
+            } else if (graphData.nodes[index][event.target.dataset.tag].includes(event.target.name)) {
+              const tagIndex = graphData.nodes[index][event.target.dataset.tag].indexOf(event.target.name)
+              filteredNodes.add(graphData.nodes[index][event.target.dataset.tag][tagIndex]);
+              filterDialogue.add(graphData.nodes[index]);
+            }
+          }
+          //Checkbox == false --> remove nodes and links from set
+        } else if(!event.target.checked) {
+          for (let index in graphData.nodes) {
+            if (graphData.nodes[index][event.target.dataset.tag] == event.target.name) {
+              filteredNodes.delete(graphData.nodes[index][event.target.dataset.tag])
+              filterDialogue.delete(graphData.nodes[index]);
+              
+            } else if (graphData.nodes[index][event.target.dataset.tag].includes(event.target.name)) {
+              const tagIndex = graphData.nodes[index][event.target.dataset.tag].indexOf(event.target.name)
+              filteredNodes.delete(graphData.nodes[index][event.target.dataset.tag][tagIndex]);
+              filterDialogue.delete(graphData.nodes[index]);
+            }
+          } 
+        }
+
+        populateFilterDialogue();
+      }
+      
+      let selectedNode = new Set();
+      let filteredNodes = new Set();
+      let filterDialogue = new Set();
+
+      const graphData = generateJson();
+      const Graph = ForceGraph();
+      Graph(document.getElementById("graph"))
+        .graphData(graphData)
+        .nodeId("id")
+        .nodeLabel("name")
+        .linkSource("source")
+        .nodeRelSize(12)
+        .linkTarget("target")
+        .nodeColor((node) => (selectedNode.has(node) ? "darkorange" : filteredNodes.has(node.area) ? "red" : "grey"))
+        //This needs to be fixed, the issue is that the users and tags and nested within another array and need different access
+        /* .nodeColor((node) => {
+          node.users.forEach(element => {
+            if(filteredNodes.has(element)) {
+              return "green";
+            } 
+          });
+
+          if (filteredNodes.has(node.area)) {
+            return "red"
+          }
+          if(selectedNode.has(node)) {
+            return "darkorange"
+          } else {
+            return "grey"
+          }
+        }) */
+        .onNodeClick((node, event) => {
+          const untoggle = selectedNode.has(node) && selectedNode.size == 1;
+          selectedNode.clear();
+          !untoggle && selectedNode.add(node);
+          Graph.nodeColor(Graph.nodeColor())
+
+          createDrawer(node);
+        })
+        .nodeCanvasObject((node, ctx, globalScale) => {
+          const label = node.name;
+          const fontSize = 9 / globalScale;
+          ctx.font = `${fontSize}px Sans-Serif`;
+          const textWidth = ctx.measureText(label).width;
+          const bckgDimensions = [textWidth, fontSize].map(
+            (n) => n + fontSize * 0.7
+            ); // some padding
+            
+            ctx.fillStyle = node.color;
+            ctx.roundRect(
+              node.x - bckgDimensions[0] / 2,
+              node.y - bckgDimensions[1] / 2,
+              ...bckgDimensions,
+              2
+              );
+              ctx.fill();
+
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
+              ctx.fillStyle = "#ffffff";
+              ctx.fillText(label, node.x, node.y);
+            })
+            .nodeCanvasObjectMode(() => "after")
+            .linkDirectionalArrowLength(8)
+            .linkDirectionalArrowRelPos(1);
+            
+    </script>
+  </body>
+</html>

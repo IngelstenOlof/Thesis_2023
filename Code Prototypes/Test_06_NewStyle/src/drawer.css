@@ -1,0 +1,58 @@
+.drawer {
+    background-color: white;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 8px 0px 0px 8px;
+    
+    height: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 24px 32px;
+    align-items: flex-start;
+    gap: 8px;
+    
+    overflow-y: auto;
+    width: 25%;
+    min-width: 24rem;
+    }
+
+    .drawer-buttons {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .drawer-content {
+        gap: 24px;
+        padding: 0;
+    }
+
+    .drawer-users {
+        gap: 12px;
+    }
+
+    .drawer-keyusers {
+        gap: 4px;
+    }
+
+    .drawer-about {
+        gap: 4px;
+    }
+
+    .drawer-data {
+        gap: 4px;
+    }
+
+    .drawer-data-container {
+        gap: 8px;
+    }
+    .drawer-data-content {
+        gap: 4px;
+    }
+
+    .drawer-data-comp {
+        justify-content: space-between;
+    }
+    .drawer-data-comp > p{
+        max-width: 33%;
+    }

@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+
+:root {
+  --gray-1: #333333;
+  --gray-2: #4f4f4f;
+  --gray-3: #828282;
+  --gray-4: #bdbdbd;
+  --gray-5: #e0e0e0;
+  --gray-6: #f2f2f2;
+}
+
+body {
+  background: var(--gray-6);
+  overflow: hidden;
+}
+
+h1 {
+  color: var(--gray-1);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 65px;
+  margin: 0;
+}
+
+h2 {
+  color: var(--gray-1);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  margin: 0;
+}
+h3 {
+  color: var(--gray-1);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  margin: 0;
+}
+h4 {
+  color: var(--gray-2);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0;
+}
+p, label {
+  color: var(--gray-2);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid var(--gray-5);
+}
+
+.fr {
+    display: flex;
+    flex-direction: row;
+}
+
+.fc {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-button-icon {
+background: transparent url(./close.svg) no-repeat center;
+background-size: 24px;
+border: none;
+cursor: pointer;
+
+width: 32px;
+height: 32px;
+}
+
+.edit-button-icon {
+    background: transparent url(./edit.svg) no-repeat center;
+    background-size: 24px;
+    border: none;
+    cursor: pointer;
+    
+    width: 32px;
+    height: 32px;
+}
