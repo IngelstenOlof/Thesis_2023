@@ -1,0 +1,76 @@
+.filter-popup-container {
+  position: absolute;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px;
+  margin: 12px 0px;
+
+  width: auto;
+  height: auto;
+
+  box-shadow: 0px 0px 24px 4px rgba(0, 0, 0, 0.25);
+  background: var(--gray-6);
+  border-radius: 24px;
+  visibility: hidden;
+}
+
+.filter-segment {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 12px;
+  gap: 12px;
+}
+
+.show {
+  visibility: visible;
+}
+
+
+.filtered-nodes-box {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px;
+  margin: 24px 24px;
+  gap: 12px;
+  
+  width: 16rem;
+  height: auto;
+  max-height: 50%;
+  overflow-y: auto;
+  
+  box-shadow: 0px 0px 24px 4px rgba(0, 0, 0, 0.25);
+  background: var(--gray-6);
+  border-radius: 24px;
+}
+
+.filter-button-menu {
+  position: relative;
+  padding: 0px 18px;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.filter-button-menu input[type = "button"] {
+  padding: 8px;
+  margin-top: 24px;
+  width: 8rem;
+
+  background: var(--gray-6);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border: none;
+}
