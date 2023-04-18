@@ -90,3 +90,47 @@ height: 32px;
     width: 32px;
     height: 32px;
 }
+
+.info-button {
+  z-index: 9;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
+  border: 2px solid transparent;
+  background: white;
+  
+}
+
+.info-button img {
+  position: absolute;
+  width: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.info-button:hover {
+  border: 2px solid #2F80ED;
+}
+
+.info-button:hover .information-box {
+  display: inline;
+  position: absolute;
+  right: 4rem;
+  bottom: 4rem;
+}
+
+.information-box {
+  display: none;
+  padding: 1rem;
+  width: 18rem;
+
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 8px 8px 0px 8px;
+  background: white;
+}

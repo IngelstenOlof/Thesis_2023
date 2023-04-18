@@ -164,10 +164,10 @@
               </div>
           </div>
       </div>
-  </div>
+    </div>
 
-  <!-- Dialogue showing filtered solutions -->
-  <div class="filtered-nodes-box fc">
+    <!-- Dialogue showing filtered solutions -->
+    <div class="filtered-nodes-box fc">
     <div class="filter-header fc">
         <h2>Filtered solutions</h2>
         <div class="filter-header-options fr">
@@ -177,7 +177,19 @@
     </div>  
     <div class="filtered-nodes-container fc">
     </div>
-  </div>
+    </div>
+
+    <!-- Information icon -->
+    <div class="info-button">
+      <img src="../src/question.svg" alt="Question mark icon">
+      <div class="information-box fc">
+          <p>Click & drag background to pan visualisation</p>
+          <p>Scroll to zoom in/out</p>
+          <p>Click on solution node for details</p>
+          <p>Click & drag solutions to move them</p>
+          <p>Hover over links to see what data is sent</p>
+      </div>
+    </div>
    
     <div id="graph"></div>
     <script>
@@ -324,15 +336,23 @@
         return Math.round(Math.random() * (obj.length - 1));
       }
 
+      //Deletes the drawer and deselects the node
+      function deleteDrawer() {
+        if(document.querySelector(".drawer")) document.querySelector(".drawer").remove();
+        selectedNode.forEach(node => {
+          const untoggle = selectedNode.has(node) && selectedNode.size == 1;
+          selectedNode.clear();
+          !untoggle && selectedNode.add(node);
+          Graph.nodeColor(Graph.nodeColor())
+        })
+      }
+
       //Dynamically create drawer from fetched JSON data
       function createDrawer(node) {
         //First check if one exists and delete it
         if (document.querySelector(".drawer") != null) {
           //If the one that is instantiated is the same as clicked --> remove without creating a new
-          if (
-            document.querySelector(".drawer .drawer-header h1").innerHTML ==
-            node.name
-          ) {
+          if (document.querySelector(".drawer .drawer-header h1").innerHTML == node.name) {
             document.querySelector(".drawer").remove();
             return;
           }
@@ -345,6 +365,7 @@
         const description = node.description;
         const users = node.users;
         
+        //Input user data to drawer div
         const popUsers = () => {
           let string = ``;
           for (user in users) {
@@ -443,6 +464,7 @@
 
         //Funkar typ samma som document.appendChild()
         document.body.insertAdjacentHTML("beforeend", drawer);
+        document.querySelector(".close-button-icon").addEventListener("click", deleteDrawer);
       }
 
       //Populates the dialogue in the left-most corner with the filtered solutions
@@ -585,12 +607,12 @@
           ctx.fillStyle = "#ffffff";
           ctx.fillText(label, node.x, node.y);
 
-          //If the node is selected show circle around it
+          /* //If the node is selected show circle around it
           if(selectedNode.has(node)) {
             ctx.beginPath();
             ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
             ctx.stroke();
-          }
+          } */
         })
         .nodeCanvasObjectMode(() => "after")
         .linkDirectionalArrowLength(8)
