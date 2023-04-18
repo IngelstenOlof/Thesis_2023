@@ -134,3 +134,26 @@ height: 32px;
   border-radius: 8px 8px 0px 8px;
   background: white;
 }
+
+.round {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.blue {
+  background: #2F80ED;
+}
+
+.purple {
+  background: #9B51E0;
+}
+
+.yellow {
+  background: #F2C94C;
+}
+
+.green {
+  background: #219653;
+}
