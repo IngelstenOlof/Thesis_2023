@@ -117,4 +117,16 @@ input[type = "search"] {
 .filtered-solution {
   padding: 8px 12px;
   border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.filtered-solution:hover {
+  background-color: var(--gray-6);
+  border: 1px solid var(--gray-1);
+  cursor: pointer;
+}
+
+.filtered-solution:active {
+  background-color: var(--gray-5);
+  border: 2px solid var(--gray-1);
 }

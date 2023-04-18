@@ -183,9 +183,8 @@
     <script>
       //Code for makig the filter button popups to work
       const filterBtns = document.querySelectorAll(".filterButton")
-        const filterPopups = document.querySelectorAll(".filter-popup-container");
-
-        filterBtns.forEach((filterBtn) => {
+      const filterPopups = document.querySelectorAll(".filter-popup-container");
+      filterBtns.forEach((filterBtn) => {
             filterBtn.addEventListener("click", () => {
                 filterPopups.forEach((popup) => {
                     if(popup.classList.contains(filterBtn.value)) {
@@ -195,12 +194,13 @@
             })
         })
 
-         //Add event listeners to all checkboxes for filtering functionality
+      //Add event listeners to all checkboxes for filtering functionality
       const filterCheckboxes = document.querySelectorAll(".checkbox input");
       filterCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener("click", filterJsonFile, "false");
       });
 
+      //Function to generate base JSON content to populate visualisation
       function generateJson() {
         const names = [
           "MÖCKELN",
@@ -319,6 +319,7 @@
         return graphData;
       }
 
+      //Returns random index from an array, used in JSON generation
       function returnRandom(obj) {
         return Math.round(Math.random() * (obj.length - 1));
       }
@@ -444,11 +445,13 @@
         document.body.insertAdjacentHTML("beforeend", drawer);
       }
 
+      //Populates the dialogue in the left-most corner with the filtered solutions
       function populateFilterDialogue() {
         //för varje elemnet i filterDialogue() så skapa en liten htmlgrej och appenda till "Filtered Solutions"
         //Töm den först
         const _compFilterDialogue = document.querySelector(".filtered-nodes-container");
-        const _compSolutionAmount = document.getElementById("filteredSolutionAmount")
+        const _compSolutionAmount = document.getElementById("filteredSolutionAmount");
+        let currentFilterSelection = [];
 
         _compSolutionAmount.innerHTML = filterDialogue.size
 
@@ -463,11 +466,39 @@
           `;
 
           _compFilterDialogue.insertAdjacentHTML("beforeend", _compFilteredSolution);
+          currentFilterSelection.push(solution)
         })
+
+        //Iterate over each .filtered-solution and add the same click interaction to them as the nodes
+        const _compInteractableSolutions = document.querySelectorAll(".filtered-solution");
+        _compInteractableSolutions.forEach((filteredSolution, index) => {
+          filteredSolution.addEventListener("click", () => {
+            const untoggle = selectedNode.has(currentFilterSelection[index]) && selectedNode.size == 1;
+            selectedNode.clear();
+            !untoggle && selectedNode.add(currentFilterSelection[index]);
+            Graph.nodeColor(Graph.nodeColor())
+
+            createDrawer(currentFilterSelection[index]);
+          });
+        });
       }
 
+      //Empties the filter cache and resets the filter dialogue
+      const clearFilterButton = document.getElementById("clearFilter");
+      clearFilterButton.addEventListener("click", clearFilter);
+      function clearFilter() {
+        //Uncheck all boxes
+        filterCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        filteredNodes.clear();
+        filterDialogue.clear();
+        populateFilterDialogue();
+      }
+
+      //Iterates over the graph data and filters into the respective filter Sets
       function filterJsonFile(event) {
-        //TODO: Filter and sanitise the new links between nodes
         //When checkbox == true
         if(event.target.checked) {
           //Iterate over graphData and add the corresponding nodes to filteredNodes
@@ -545,32 +576,25 @@
           const textWidth = ctx.measureText(label).width;
           const bckgDimensions = [textWidth, fontSize].map((n) => n + fontSize * 0.7); // some padding
             
-            
-          
-            ctx.fillStyle = node.color;
-            ctx.roundRect(
-              node.x - bckgDimensions[0] / 2,
-              node.y - bckgDimensions[1] / 2,
-              ...bckgDimensions,
-              2
-              );
-              ctx.fill();
+          ctx.fillStyle = node.color;
+          ctx.roundRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions, 2);
+          ctx.fill();
 
-              ctx.textAlign = "center";
-              ctx.textBaseline = "middle";
-              ctx.fillStyle = "#ffffff";
-              ctx.fillText(label, node.x, node.y);
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = "#ffffff";
+          ctx.fillText(label, node.x, node.y);
 
-              //If the node is selected show circle around it
-            if(selectedNode.has(node)) {
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
-                ctx.stroke();
-              }
-            })
-            .nodeCanvasObjectMode(() => "after")
-            .linkDirectionalArrowLength(8)
-            .linkDirectionalArrowRelPos(1);
+          //If the node is selected show circle around it
+          if(selectedNode.has(node)) {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
+            ctx.stroke();
+          }
+        })
+        .nodeCanvasObjectMode(() => "after")
+        .linkDirectionalArrowLength(8)
+        .linkDirectionalArrowRelPos(1);
             
     </script>
   </body>
