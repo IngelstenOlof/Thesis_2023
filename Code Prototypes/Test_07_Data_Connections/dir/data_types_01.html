@@ -11,6 +11,7 @@
     <title>Solution Overview</title>
   </head>
   <body>
+    <!-- Top menu bar -->
     <div class="top-bar fr">
       <input type="search" name="search" id="search" placeholder="Search...">
       <div class="filter-button-menu fr">
@@ -165,6 +166,7 @@
       </div>
   </div>
 
+  <!-- Dialogue showing filtered solutions -->
   <div class="filtered-nodes-box fc">
     <div class="filter-header fc">
         <h2>Filtered solutions</h2>
@@ -175,7 +177,7 @@
     </div>  
     <div class="filtered-nodes-container fc">
     </div>
-</div>
+  </div>
    
     <div id="graph"></div>
     <script>
@@ -267,7 +269,24 @@
           "Development",
           "Technology",
         ];
-
+        const dataTypes = [
+          "CAD Files",
+          "Documentation",
+          "User Research",
+          "Market Research",
+          "Legal Documents",
+          "3D Models",
+          "Photographs",
+          "Product Descriptions",
+          "Shipping Manifests",
+          "Internal Data",
+          "Coffee Orders",
+          "E-Mail",
+          "Design Files",
+          "Sketches",
+          "User Journeys",
+          "Material Documentation"
+        ]
         const N = 60;
         const graphData = {
           nodes: [...Array(N).keys()].map((i) => ({
@@ -292,6 +311,7 @@
             .map((id) => ({
               source: id,
               target: Math.round(Math.random() * (id - 1)),
+              data: dataTypes[returnRandom(dataTypes)]
             })),
         };
 
@@ -332,22 +352,32 @@
           return string;
         };
         
+        //Add the data points for both the ingoing and outgoing data to/from solutions
         const popIngoing = () => {
           let string = ``;
           
           for(index in graphData.links) {
             if(graphData.links[index].target.id == node.id) {
-              console.log("här ")
               string += `
                <div class="drawer-data-comp fr">
-                 <p>Data point</p>
+                 <p>${graphData.links[index].data}</p>
                  <p>from</p>
                  <p>${graphData.links[index].source.name}</p>
                </div>
                `;
             }
           }
-          return string;
+
+          //If the solution doesn't receive data then don't show the header
+          if(string == "") return "";
+          const _comp = `
+            <h3>Ingoing</h3>
+              <div class="drawer-data-content fc">
+                ${string}
+              </div>
+          `;
+
+          return _comp;
         };
 
         const popOutgoing = () => {
@@ -357,7 +387,7 @@
             if(graphData.links[index].source.id == node.id) {
               string += `
                <div class="drawer-data-comp fr">
-                 <p>Data point</p>
+                 <p>${graphData.links[index].data}</p>
                  <p>to</p>
                  <p>${graphData.links[index].target.name}</p>
                </div>
@@ -390,19 +420,14 @@
             <h4>Description</h4>
             <p>${description}</p>
             <h4>Processes</h4>
-            <ul>
-                <li>Process 1</li>
-                <li>Process 2</li>
-                <li>Process 3</li>
-            </ul>
+              <p>Process 1</p>
+              <p>Process 2</p>
+              <p>Process 3</p>
         </div>
         <div class="drawer-data fc">
             <h2>Data</h2>
             <div class="drawer-data-container fc">
-                <h3>Ingoing</h3>
-                <div class="drawer-data-content fc">
-                  ${popIngoing()}
-                </div>
+              ${popIngoing()}
             </div>
             <div class="drawer-data-container">
                 <h3>Outgoing</h3>
@@ -420,7 +445,7 @@
       }
 
       function populateFilterDialogue() {
-        //för varje elemnt i filterDialogue() så skapa en liten htmlgrej och appenda till "Filtered Solutions"
+        //för varje elemnet i filterDialogue() så skapa en liten htmlgrej och appenda till "Filtered Solutions"
         //Töm den först
         const _compFilterDialogue = document.querySelector(".filtered-nodes-container");
         const _compSolutionAmount = document.getElementById("filteredSolutionAmount")
@@ -485,33 +510,31 @@
         .graphData(graphData)
         .nodeId("id")
         .nodeLabel("name")
-        .linkSource("source")
         .nodeRelSize(12)
+        .linkSource("source")
         .linkTarget("target")
-        .nodeColor((node) => (selectedNode.has(node) ? "darkorange" : filteredNodes.has(node.area) ? "red" : "grey"))
+        .linkLabel("data")
+        .linkWidth(2)
+        //.nodeColor((node) => (selectedNode.has(node) ? "darkorange" : filteredNodes.has(node.area) ? "red" : "grey"))
         //This needs to be fixed, the issue is that the users and tags and nested within another array and need different access
-        /* .nodeColor((node) => {
-          node.users.forEach(element => {
-            if(filteredNodes.has(element)) {
-              return "green";
-            } 
-          });
-
-          if (filteredNodes.has(node.area)) {
-            return "red"
-          }
+        .nodeColor((node) => {
           if(selectedNode.has(node)) {
             return "darkorange"
-          } else {
-            return "grey"
+          } else if (node.area == "Range Integration"){
+            return "#2F80ED" //Blue
+          } else if (node.area == "Sales Collaboration") {
+            return "#9B51E0" //Purple
+          } else if (node.area == "Project & Range Management") {
+            return "#F2C94C" //Yellow
+          } else if (node.area == "Product Engineering & Requirements") {
+            return "#219653" //Green
           }
-        }) */
+        })
         .onNodeClick((node, event) => {
           const untoggle = selectedNode.has(node) && selectedNode.size == 1;
           selectedNode.clear();
           !untoggle && selectedNode.add(node);
           Graph.nodeColor(Graph.nodeColor())
-          console.log(selectedNode.values())
 
           createDrawer(node);
         })
@@ -520,10 +543,10 @@
           const fontSize = 9 / globalScale;
           ctx.font = `${fontSize}px Sans-Serif`;
           const textWidth = ctx.measureText(label).width;
-          const bckgDimensions = [textWidth, fontSize].map(
-            (n) => n + fontSize * 0.7
-            ); // some padding
+          const bckgDimensions = [textWidth, fontSize].map((n) => n + fontSize * 0.7); // some padding
             
+            
+          
             ctx.fillStyle = node.color;
             ctx.roundRect(
               node.x - bckgDimensions[0] / 2,
@@ -537,6 +560,13 @@
               ctx.textBaseline = "middle";
               ctx.fillStyle = "#ffffff";
               ctx.fillText(label, node.x, node.y);
+
+              //If the node is selected show circle around it
+            if(selectedNode.has(node)) {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
+                ctx.stroke();
+              }
             })
             .nodeCanvasObjectMode(() => "after")
             .linkDirectionalArrowLength(8)
