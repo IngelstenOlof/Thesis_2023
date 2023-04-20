@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../src/filter.css">
+    <link rel="stylesheet" href="../src/drawer.css">
+</head>
+<body>
+    <div class="top-bar fr">
+        <input type="search" name="search" id="search" placeholder="Search...">
+        <div class="filter-button-menu fr">
+            <div class="filter-menu-item">
+                <input type="button" value="Area" class="filterButton" id="filterArea">
+                <div class="filter-popup-container fc Area" id="popup_area">
+                    <div class="filter-segment fc">
+                        <h2>Area</h2>
+                        <div class="checkbox-container fc">
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="area" name="Range Integration" id="Range Integration">
+                                <label for="Range Integration">Range Integration</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="area" name="Sales Collaboration" id="Sales Collaboration">
+                                <label for="Sales Collaboration">Sales Collaboration</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="area" name="Project & Range Management" id="Project & Range Management">
+                                <label for="Project & Range Management">Project & Range Management</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="area" name="Product Engineering & Requirements" id="Product Engineering & Requirements">
+                                <label for="Product Engineering & Requirements">Product Engineering & Requirements</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-menu-item">
+                <input type="button" value="Users" class="filterButton" id="filterUsers">
+                <div class="filter-popup-container fc Users" id="popup_users">
+                    <div class="filter-segment fc">
+                        <h2>Users</h2>
+                        <div class="checkbox-container fc">
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Business Leader" id="Business Leader">
+                                <label for="Business Leader">Business Leader</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Retail" id="Retail">
+                                <label for="Retail">Retail</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Customer Specialist" id="Customer Specialist">
+                                <label for="Customer Specialist">Customer Specialist</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Helpdesk" id="Helpdesk">
+                                <label for="Helpdesk">Helpdesk</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Administrators" id="Administrators">
+                                <label for="Administrators">Administrators</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Project Controller" id="Project Controller">
+                                <label for="Project Controller">Project Controller</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Support" id="Support">
+                                <label for="Support">Support</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Engineers" id="Engineers">
+                                <label for="Engineers">Engineers</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Designers" id="Designers">
+                                <label for="Designers">Designers</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Team Leaders" id="Team Leaders">
+                                <label for="Team Leaders">Team Leaders</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Quality Assurance" id="Quality Assurance">
+                                <label for="Quality Assurance">Quality Assurance</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="users" name="Suppliers" id="Suppliers">
+                                <label for="Suppliers">Suppliers</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-menu-item">
+                <input type="button" value="Process" class="filterButton" id="filterProcess">
+                <div class="filter-popup-container fc Process" id="popup_process">
+                        <div class="filter-segment fc">
+                            <h2>Process</h2>
+                            <div class="checkbox-container fc">
+                                <div class="checkbox">
+                                    <input type="checkbox" data-tag="process" name="process_1" id="process_1">
+                                    <label for="process_1">Process_1</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" data-tag="process" name="process_2" id="process_2">
+                                    <label for="process_2">Process_2</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" data-tag="process" name="process_3" id="process_3">
+                                    <label for="process_3">Process_3</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" data-tag="process" name="process_4" id="process_4">
+                                    <label for="process_4">Process_4</label>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="filter-menu-item">
+                <input type="button" value="Tags" class="filterButton" id="filterTags">
+                <div class="filter-popup-container fc Tags" id="popup_tags">
+                    <div class="filter-segment fc">
+                        <h2>Tags</h2>
+                        <div class="checkbox-container fc">
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Design" id="Design">
+                                <label for="Design">Design</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Research" id="Research">
+                                <label for="Research">Research</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="UX" id="UX">
+                                <label for="UX">UX</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Textile" id="Textile">
+                                <label for="Textile">Textile</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Sales" id="Sales">
+                                <label for="Sales">Sales</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Development" id="Development">
+                                <label for="Development">Development</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" data-tag="tags" name="Technology" id="Technology">
+                                <label for="Technology">Technology</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="drawer fc">
+        <div class="drawer-buttons fr">
+            <button class="edit-button-icon"></button>
+            <button class="close-button-icon"></button>
+        </div>
+        <div class="drawer-content fc">
+            <div class="drawer-header fc">
+                <h1>Solution Name</h1>
+                <h2>Area</h2>
+            </div>
+            <div class="drawer-users fc">
+                <h3>@Solution Owner</h3>
+                <div class="drawer-keyusers fc">
+                    <h4>Key User #1</h4>
+                    <h4>Key User #2</h4>
+                    <h4>Key User #3</h4>
+                </div>
+            </div>
+            <div class="drawer-about fc">
+                <h2>About</h2>
+                <h4>Description</h4>
+                <p>Dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet.</p>
+                <h4>Processes</h4>
+                <ul>
+                    <li>Process 1</li>
+                    <li>Process 2</li>
+                    <li>Process 3</li>
+                </ul>
+            </div>
+            <div class="drawer-data fc">
+                <h2>Data</h2>
+                <div class="drawer-data-container fc">
+                    <h3>Ingoing</h3>
+                    <div class="drawer-data-content fc">
+                        <div class="drawer-data-comp fr">
+                            <p>Data point #1</p>
+                            <p>from</p>
+                            <p>Other Solution</p>
+                        </div>
+                        <div class="drawer-data-comp fr">
+                            <p>Data point #2</p>
+                            <p>from</p>
+                            <p>Other Solution</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer-data-container">
+                    <h3>Outgoing</h3>
+                    <div class="drawer-data-content">
+                        <div class="drawer-data-comp fr">
+                            <p>Data point #1</p>
+                            <p>to</p>
+                            <p>Other Solution</p>
+                        </div>
+                        <div class="drawer-data-comp fr">
+                            <p>Data point #2</p>
+                            <p>to</p>
+                            <p>Other Solution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="selected-filters fc">
+        <div>
+            <h3>Active filters</h3>
+        </div>
+        <h4>filter</h4>
+        <h4>filter</h4>
+    </div>
+    <div class="filtered-nodes-box fc">
+        <div class="filter-header fc">
+            <h2>Filtered solutions</h2>
+            <div class="filter-header-options fr">
+                <h3><span id="filteredSolutionAmount">0</span>/60</h3>
+                <input type="button" value="Clear filter" id="clearFilter">
+            </div>
+        </div>  
+        <div class="filtered-nodes-container fc">
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+            <div class="filtered-solution fc">
+                <h3>${solution.name}</h3>
+                <p>${solution.area}</p>
+            </div>
+        </div>
+    </div>
+    <div class="info-button">
+        <img src="../src/question.svg" alt="Question mark icon">
+        <div class="information-box fc">
+            <p>Click & drag background to pan visualisation</p>
+            <p>Scroll to zoom in/out</p>
+            <p>Click on solution node for details</p>
+            <p>Click & drag solutions to move them</p>
+            <p>Hover over links to see what data is sent</p>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
