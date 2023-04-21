@@ -283,7 +283,7 @@
             "owner" : "Subhagowri K V",
             "description" : "PIA FEREP solution provides Product Requirement Engineers (PREs) within IoS, PDC and Free Range Centers to define applicable characteristics  needed for environmental reporting on our Home Furnishing Offer.",
             "users" : [
-                "Product Requirement Engineers (PREs)",
+                "Product Requirement Engineers",
                 "Team Leaders"
             ]
         },
@@ -321,7 +321,7 @@
             "owner" : "Anders Friberg",
             "description" : "Analysis tool to digitally verify strength/durability quality of the products we develop, based on 3D models. This minimize the need for physical prototypes.",
             "users" : [
-                "FEA Engineers"
+                "Engineers"
             ]
         },
         {
@@ -344,11 +344,12 @@
             "owner" : "Subhagowri K V",
             "description" : "MMR (Mapping of Market Requirements) solution mainly supports Retail co-workers and Product Requirement specialists in registering cases for new and updated legislations/regulations and trace the latest status of ongoing cases.",
             "users" : [
-                "Retail Country Spealists, Product Requirement specialists",
+                "Retail Country Specialists",
+                "Product Requirement specialists",
                 "Requirement Coordinator",
                 "Requirement developer (FOOD)",
                 "Laws and standard specialists (FOOD)",
-                "All Team Leaders",
+                "Team Leaders",
                 "Product Quality Leaders"
             ]
         },
@@ -360,7 +361,7 @@
             "users" : [
                 "Product Requirement Compliance Specialists",
                 "Product Requirement Specialists",
-                "Customs Compliance Specialist, Systems Support (US Customs team) Quality Specialist in Purchasing"
+                "Customs Compliance Specialist"
             ]
         },
         {
@@ -394,7 +395,7 @@
             "owner" : "Li-Min Zhu Svensson",
             "description" : "A part of PIA (enable IOS engineers to compose the product requirements and the supplier implementation request, and release it further through Purchasing to Supplier for implementation).",
             "users" : [
-                "IOS Engineers"
+                "Engineers"
             ]
         },
         {
@@ -411,7 +412,7 @@
             "description" : "The PLUS solution is a Product Lifecycle Management (PLM) solution and the purpose is to cover the product development process in a company. It has functionality for creating, version managing and distributing product documentation.  The solution consists of a main platform and on top of it different products are installed and run.",
             "users" : [
                 "Engineers",
-                "Manufacturing Suppliers at IKEA Components",
+                "Manufacturing Suppliers",
                 "Category"
             ]
         },
@@ -448,7 +449,7 @@
             "owner" : "Robin Krejlgaard",
             "description" : "Part of PLUS solution, enables the users to do design collaboration with development partners and share component requirements with manufacturing suppliers.",
             "users" : [
-                "Manufacturing Suppliers at IKEA Components",
+                "Manufacturing Suppliers",
                 "Category",
                 "Development Partners"
             ]
@@ -506,7 +507,7 @@
             "owner" : "Anders Friberg",
             "description" : "Light simulation software, digitally placing a light source into an 3D model to study how the light is spread and reflected. This minimize the need for physical prototypes. COTS.",
             "users" : [
-                "Engineers (HFB Lighting)"
+                "Engineers"
             ]
         },
         {
@@ -536,8 +537,9 @@
             "owner" : "Hans Andersson",
             "description" : "TRS (Test Report System) supports the test and sample process during the IKEA product development cycle.",
             "users" : [
-                "Co-workers at the iKEA Test Lab, Älmhult",
-                "Product developers and Product Requirement Engineers"
+                "IKEA Test Lab",
+                "Product developers",
+                "Product Requirement Engineers"
             ]
         },
         {
@@ -562,7 +564,7 @@
             "owner" : "Subhagowri K V",
             "description" : "The Production Information - FEREP solution  enables the reporting responsible within Retail and ISAG to obtain relevant product information, required to fulfil Producer Responsibility.",
             "users" : [
-                "Environmental Reporting Specialists, Reporting Responsibles",
+                "Environmental Reporting Specialists",
                 "Product Requirement Specialists and Team Leaders",
                 "Project Leaders (Circular Supply)"
             ]

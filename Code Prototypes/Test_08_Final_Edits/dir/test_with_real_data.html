@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/force-graph@1.43.0/dist/force-graph.min.js"></script>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../src/filter.css">
+    <link rel="stylesheet" href="../src/drawer.css">
+    <title>Solution Overview</title>
+  </head>
+  <body>
+    <!-- Top menu bar -->
+    <div class="top-bar fr">
+      <input type="search" name="search" id="search" placeholder="Search...">
+      <div class="filter-button-menu fr">
+          <div class="filter-menu-item">
+              <input type="button" value="Area" class="filterButton" id="filterArea">
+              <div class="filter-popup-container fc Area" id="popup_area">
+                  <div class="filter-segment fc">
+                      <h2>Area</h2>
+                      <div class="checkbox-container fc">
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Range Integration" id="Range Integration">
+                              <label for="Range Integration">Range Integration</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Sales Collaboration" id="Sales Collaboration">
+                              <label for="Sales Collaboration">Sales Collaboration</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Project & Range Management" id="Project & Range Management">
+                              <label for="Project & Range Management">Project & Range Management</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="area" name="Product Engineering & Requirements" id="Product Engineering & Requirements">
+                              <label for="Product Engineering & Requirements">Product Engineering & Requirements</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Users" class="filterButton" id="filterUsers">
+              <div class="filter-popup-container fc Users" id="popup_users">
+                  <div class="filter-segment fc">
+                      <h2>Users</h2>
+                      <div class="checkbox-container fc">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Process" class="filterButton" id="filterProcess">
+              <div class="filter-popup-container fc Process" id="popup_process">
+                      <div class="filter-segment fc">
+                          <h2>Process</h2>
+                          <div class="checkbox-container fc">
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_1" id="process_1">
+                                  <label for="process_1">Process_1</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_2" id="process_2">
+                                  <label for="process_2">Process_2</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_3" id="process_3">
+                                  <label for="process_3">Process_3</label>
+                              </div>
+                              <div class="checkbox">
+                                  <input type="checkbox" data-tag="process" name="process_4" id="process_4">
+                                  <label for="process_4">Process_4</label>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          </div>
+          <div class="filter-menu-item">
+              <input type="button" value="Tags" class="filterButton" id="filterTags">
+              <div class="filter-popup-container fc Tags" id="popup_tags">
+                  <div class="filter-segment fc">
+                      <h2>Tags</h2>
+                      <div class="checkbox-container fc">
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Design" id="Design">
+                              <label for="Design">Design</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Research" id="Research">
+                              <label for="Research">Research</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="UX" id="UX">
+                              <label for="UX">UX</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Textile" id="Textile">
+                              <label for="Textile">Textile</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Sales" id="Sales">
+                              <label for="Sales">Sales</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Development" id="Development">
+                              <label for="Development">Development</label>
+                          </div>
+                          <div class="checkbox">
+                              <input type="checkbox" data-tag="tags" name="Technology" id="Technology">
+                              <label for="Technology">Technology</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Dialogue showing filtered solutions -->
+    <div class="filtered-nodes-box fc">
+    <div class="filter-header fc">
+        <h2>Filtered solutions</h2>
+        <div class="filter-header-options fr">
+            <h3><span id="filteredSolutionAmount">0</span>/63</h3>
+            <input type="button" value="Clear filter" id="clearFilter">
+        </div>
+    </div>  
+    <div class="filtered-nodes-container fc">
+    </div>
+    </div>
+
+    <!-- Information icon -->
+    <div class="info-button">
+      <img src="../src/question.svg" alt="Question mark icon">
+      <div class="information-box fc">
+          <h4>Information</h4>
+          <p>Click & drag background to pan visualisation</p>
+          <p>Scroll to zoom in/out</p>
+          <p>Click on solution node for details</p>
+          <p>Click & drag solutions to move them</p>
+          <p>Hover over links to see what data is sent</p>
+          <p>Filter information with buttons in the top bar</p>
+          <br>
+          <h4>Legend</h4>
+          <p><span class="round blue"></span> Range Integration</p>
+          <p><span class="round purple"></span> Sales Collaboration</p>
+          <p><span class="round yellow"></span> Project & Range Intergration</p>
+          <p><span class="round green"></span> Product Engineering & Requirements</p>
+      </div>
+    </div>
+   
+    <div id="graph"></div>
+    <script>
+      //Code for makig the filter button popups to work
+      const filterBtns = document.querySelectorAll(".filterButton")
+      const filterPopups = document.querySelectorAll(".filter-popup-container");
+      filterBtns.forEach((filterBtn) => {
+            filterBtn.addEventListener("click", () => {
+                filterPopups.forEach((popup) => {
+                    if(popup.classList.contains(filterBtn.value)) {
+                      popup.classList.toggle("show");
+                  } 
+                })
+            })
+        })
+
+      //Add event listeners to all checkboxes for filtering functionality
+      const filterCheckboxes = document.querySelectorAll(".checkbox input");
+      filterCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("click", filterJsonFile, "false");
+      });
+
+      //Function to generate base JSON content to populate visualisation
+      async function generateJson() {
+        const res = await fetch("../../complete-solutions-02.json");
+        const fetchJson = await res.json();
+        
+        const users = [
+          "Business Leader",
+          "Retail",
+          "Customer Specialist",
+          "Helpdesk",
+          "Administrators",
+          "Project Controller",
+          "Support",
+          "Retail",
+          "Engineers",
+          "Designers",
+          "Team Leaders",
+          "Quality Assurance",
+          "Suppliers",
+        ];
+        const tags = [
+          "Design",
+          "Research",
+          "UX",
+          "Textile",
+          "Sales",
+          "Development",
+          "Technology",
+        ];
+        const dataTypes = [
+          "CAD Files",
+          "Documentation",
+          "User Research",
+          "Market Research",
+          "Legal Documents",
+          "3D Models",
+          "Photographs",
+          "Product Descriptions",
+          "Shipping Manifests",
+          "Internal Data",
+          "Coffee Orders",
+          "E-Mail",
+          "Design Files",
+          "Sketches",
+          "User Journeys",
+          "Material Documentation"
+        ]
+        
+
+        fetchJson.nodes.forEach((node, index) => {
+          node.id = index;
+          node.tags = [
+            returnRandom(tags),
+            returnRandom(tags),
+            returnRandom(tags)
+          ];
+
+          fetchJson.links[index] = {
+            source: index,
+            target: Math.round(Math.random() * (index)),
+            data: dataTypes[returnRandom(dataTypes)]
+          }
+        })
+
+        console.log(fetchJson)
+        populateUserCheckboxes(fetchJson);
+        return fetchJson;
+      }
+
+     function populateUserCheckboxes(data) {
+      const userCount = new Set();
+      const checkboxUsersContainer = document.querySelector(".Users .checkbox-container");
+      
+      data.nodes.forEach((node) => {
+        node.users.forEach((user) => {
+          if(userCount.has(user)) {
+            return;
+          } else {
+            userCount.add(user);
+          }
+        })
+      })
+      
+      let string = "";
+      userCount.forEach((user) => {
+        const _checkComp = `
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            data-tag="users"
+            name="${user}"
+            id="${user}"
+          />
+          <label for="${user}">${user}</label>
+          </div>
+        `;
+        string += _checkComp;
+      })
+      checkboxUsersContainer.insertAdjacentHTML("beforeend", string);
+
+      const _userCheckboxes = document.querySelectorAll(".Users .checkbox input");
+      _userCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("click", filterJsonFile, "false")
+      })
+      
+     }
+
+      //Returns random index from an array, used in JSON generation
+      function returnRandom(obj) {
+        return Math.round(Math.random() * (obj.length - 1));
+      }
+
+      //Deletes the drawer and deselects the node
+      function deleteDrawer() {
+        if(document.querySelector(".drawer")) document.querySelector(".drawer").remove();
+        selectedNode.forEach(node => {
+          const untoggle = selectedNode.has(node) && selectedNode.size == 1;
+          selectedNode.clear();
+          !untoggle && selectedNode.add(node);
+          Graph.nodeColor(Graph.nodeColor())
+        })
+      }
+
+      //Dynamically create drawer from fetched JSON data
+      function createDrawer(node) {
+        //First check if one exists and delete it
+        if (document.querySelector(".drawer") != null) {
+          //If the one that is instantiated is the same as clicked --> remove without creating a new
+          if (document.querySelector(".drawer .drawer-header h1").innerHTML == node.name) {
+            document.querySelector(".drawer").remove();
+            return;
+          }
+          document.querySelector(".drawer").remove();
+        }
+
+        const name = node.name;
+        const area = node.area;
+        const owner = node.owner;
+        const description = node.description;
+        const users = node.users;
+        
+        //Input user data to drawer div
+        const popUsers = () => {
+          let string = ``;
+          for (user in users) {
+            string += `<h4>${users[user]}</h4>`;
+          }
+          return string;
+        };
+        
+        //Add the data points for both the ingoing and outgoing data to/from solutions
+        const popIngoing = () => {
+          let string = ``;
+          
+          for(index in graphData.links) {
+            if(graphData.links[index].target.id == node.id) {
+              string += `
+               <div class="drawer-data-comp fr">
+                 <p>${graphData.links[index].data}</p>
+                 <p>from</p>
+                 <p>${graphData.links[index].source.name}</p>
+               </div>
+               `;
+            }
+          }
+
+          //If the solution doesn't receive data then don't show the header
+          if(string == "") return "";
+          const _comp = `
+            <h3>Ingoing</h3>
+              <div class="drawer-data-content fc">
+                ${string}
+              </div>
+          `;
+
+          return _comp;
+        };
+
+        const popOutgoing = () => {
+          let string = ``;
+          
+          for(index in graphData.links) {
+            if(graphData.links[index].source.id == node.id) {
+              string += `
+               <div class="drawer-data-comp fr">
+                 <p>${graphData.links[index].data}</p>
+                 <p>to</p>
+                 <p>${graphData.links[index].target.name}</p>
+               </div>
+               `;
+            }
+          }
+          return string;
+        };
+
+        //Template literal for drawer components
+        const drawer = `
+        <div class="drawer fc">
+    <div class="drawer-buttons fr">
+        <button class="edit-button-icon"></button>
+        <button class="close-button-icon"></button>
+    </div>
+    <div class="drawer-content fc">
+        <div class="drawer-header fc">
+            <h1>${name}</h1>
+            <h2>${area}</h2>
+        </div>
+        <div class="drawer-users fc">
+            <h3>@${owner}</h3>
+            <div class="drawer-keyusers fc">
+                ${popUsers()}
+            </div>
+        </div>
+        <div class="drawer-about fc">
+            <h2>About</h2>
+            <h4>Description</h4>
+            <p>${description}</p>
+            <h4>Processes</h4>
+              <p>Process 1</p>
+              <p>Process 2</p>
+              <p>Process 3</p>
+        </div>
+        <div class="drawer-data fc">
+            <h2>Data</h2>
+            <div class="drawer-data-container fc">
+              ${popIngoing()}
+            </div>
+            <div class="drawer-data-container">
+                <h3>Outgoing</h3>
+                <div class="drawer-data-content">
+                    ${popOutgoing()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            `;
+
+        //Funkar typ samma som document.appendChild()
+        document.body.insertAdjacentHTML("beforeend", drawer);
+        document.querySelector(".close-button-icon").addEventListener("click", deleteDrawer);
+      }
+
+      function activeFilterDialogue() {
+        if (document.querySelector(".selected-filters") != null ) {
+          document.querySelector(".selected-filters").remove();
+        }
+        if(filteredNodes.size == 0) document.querySelector(".selected-filters").remove();
+
+        const iterateActiveFilters = () => {
+          let string = ""
+          filteredNodes.forEach((filter) => {
+            console.log(filter)
+            string += `<h4>${filter}</h4>`;
+
+          })
+          return string;
+        }
+        
+        const _activeComp = `
+        <div class="selected-filters fc">
+          <div>
+            <h3>Active filters</h3>
+          </div>
+          ${iterateActiveFilters()}
+        </div>
+        `;
+
+        document.body.insertAdjacentHTML("beforeend", _activeComp);
+      }
+
+      //Populates the dialogue in the left-most corner with the filtered solutions
+      function populateFilterDialogue() {
+        //för varje elemnet i filterDialogue() så skapa en liten htmlgrej och appenda till "Filtered Solutions"
+        //Töm den först
+        const _compFilterDialogue = document.querySelector(".filtered-nodes-container");
+        const _compSolutionAmount = document.getElementById("filteredSolutionAmount");
+        let currentFilterSelection = [];
+
+        _compSolutionAmount.innerHTML = filterDialogue.size
+
+        while(_compFilterDialogue.firstChild) _compFilterDialogue.removeChild(_compFilterDialogue.firstChild)
+
+        filterDialogue.forEach((solution) => {
+          const _compFilteredSolution = `
+          <div class="filtered-solution">
+            <h3>${solution.name}</h3>
+            <p>${solution.area}</p>
+          </div>
+          `;
+
+          _compFilterDialogue.insertAdjacentHTML("beforeend", _compFilteredSolution);
+          currentFilterSelection.push(solution)
+        })
+
+        //Iterate over each .filtered-solution and add the same click interaction to them as the nodes
+        const _compInteractableSolutions = document.querySelectorAll(".filtered-solution");
+        _compInteractableSolutions.forEach((filteredSolution, index) => {
+          filteredSolution.addEventListener("click", () => {
+            const untoggle = selectedNode.has(currentFilterSelection[index]) && selectedNode.size == 1;
+            selectedNode.clear();
+            !untoggle && selectedNode.add(currentFilterSelection[index]);
+            Graph.nodeColor(Graph.nodeColor())
+
+            createDrawer(currentFilterSelection[index]);
+          });
+        });
+
+        activeFilterDialogue();
+      }
+
+      //Empties the filter cache and resets the filter dialogue
+      const clearFilterButton = document.getElementById("clearFilter");
+      clearFilterButton.addEventListener("click", clearFilter);
+      function clearFilter() {
+        //Uncheck all boxes
+        filterCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        filteredNodes.clear();
+        filterDialogue.clear();
+        populateFilterDialogue();
+      }
+
+      //Iterates over the graph data and filters into the respective filter Sets
+      function filterJsonFile(event) {
+        //When checkbox == true
+        if(event.target.checked) {
+          //Iterate over graphData and add the corresponding nodes to filteredNodes
+          for (let index in graphData.nodes) {
+            if (graphData.nodes[index][event.target.dataset.tag] == event.target.name) {
+              filteredNodes.add(graphData.nodes[index][event.target.dataset.tag]);
+              filterDialogue.add(graphData.nodes[index]);
+              
+            } else if (graphData.nodes[index][event.target.dataset.tag].includes(event.target.name)) {
+              const tagIndex = graphData.nodes[index][event.target.dataset.tag].indexOf(event.target.name)
+              filteredNodes.add(graphData.nodes[index][event.target.dataset.tag][tagIndex]);
+              filterDialogue.add(graphData.nodes[index]);
+            }
+          }
+          //Checkbox == false --> remove nodes and links from set
+        } else if(!event.target.checked) {
+          for (let index in graphData.nodes) {
+            if (graphData.nodes[index][event.target.dataset.tag] == event.target.name) {
+              filteredNodes.delete(graphData.nodes[index][event.target.dataset.tag])
+              filterDialogue.delete(graphData.nodes[index]);
+              
+            } else if (graphData.nodes[index][event.target.dataset.tag].includes(event.target.name)) {
+              const tagIndex = graphData.nodes[index][event.target.dataset.tag].indexOf(event.target.name)
+              filteredNodes.delete(graphData.nodes[index][event.target.dataset.tag][tagIndex]);
+              filterDialogue.delete(graphData.nodes[index]);
+            }
+          } 
+        }
+
+        populateFilterDialogue();
+      }
+      
+      let selectedNode = new Set();
+      let filteredNodes = new Set();
+      let filterDialogue = new Set();
+      let graphData;
+      const Graph = ForceGraph();
+
+      generateJson().then((jsonData) => {
+        graphData = jsonData;
+        Graph(document.getElementById("graph"))
+          .graphData(graphData)
+          .nodeId("id")
+          .nodeLabel("name")
+          .nodeRelSize(12)
+          .linkSource("source")
+          .linkTarget("target")
+          .linkLabel("data")
+          .linkWidth(2)
+          //.nodeColor((node) => (selectedNode.has(node) ? "darkorange" : filteredNodes.has(node.area) ? "red" : "grey"))
+          //This needs to be fixed, the issue is that the users and tags and nested within another array and need different access
+          .nodeColor((node) => {
+            if(selectedNode.has(node)) {
+              return "darkorange"
+            } else if (node.area == "Range Integration"){
+              return "#2F80ED" //Blue
+            } else if (node.area == "Sales Collaboration") {
+              return "#9B51E0" //Purple
+            } else if (node.area == "Project & Range Management") {
+              return "#F2C94C" //Yellow
+            } else if (node.area == "Product Engineering & Requirements") {
+              return "#219653" //Green
+            }
+          })
+          .onNodeClick((node, event) => {
+            const untoggle = selectedNode.has(node) && selectedNode.size == 1;
+            selectedNode.clear();
+            !untoggle && selectedNode.add(node);
+            Graph.nodeColor(Graph.nodeColor())
+  
+            createDrawer(node);
+          })
+          .nodeCanvasObject((node, ctx, globalScale) => {
+            const label = node.name;
+            const fontSize = 9 / globalScale;
+            ctx.font = `${fontSize}px Sans-Serif`;
+            const textWidth = ctx.measureText(label).width;
+            const bckgDimensions = [textWidth, fontSize].map((n) => n + fontSize * 0.7); // some padding
+              
+            ctx.fillStyle = node.color;
+            ctx.roundRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions, 2);
+            ctx.fill();
+  
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(label, node.x, node.y);
+  
+            /* //If the node is selected show circle around it
+            if(selectedNode.has(node)) {
+              ctx.beginPath();
+              ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
+              ctx.stroke();
+            } */
+          })
+          .nodeCanvasObjectMode(() => "after")
+          .linkDirectionalArrowLength(8)
+          .linkDirectionalArrowRelPos(1);     
+      })
+    </script>
+  </body>
+</html>

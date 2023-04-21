@@ -61,7 +61,8 @@ input[type = "search"] {
   top: 5rem;
 
   width: auto;
-  height: auto;
+  max-height: 24rem;
+  overflow-y: scroll;
 
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
