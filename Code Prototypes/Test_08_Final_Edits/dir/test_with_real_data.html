@@ -166,7 +166,6 @@
             })
         })
 
-      //Add event listeners to all checkboxes for filtering functionality
       const filterCheckboxes = document.querySelectorAll(".checkbox input");
       filterCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener("click", filterJsonFile, "false");
@@ -177,22 +176,7 @@
         const res = await fetch("../../complete-solutions-02.json");
         const fetchJson = await res.json();
         
-        const users = [
-          "Business Leader",
-          "Retail",
-          "Customer Specialist",
-          "Helpdesk",
-          "Administrators",
-          "Project Controller",
-          "Support",
-          "Retail",
-          "Engineers",
-          "Designers",
-          "Team Leaders",
-          "Quality Assurance",
-          "Suppliers",
-        ];
-        const tags = [
+        const _tags = [
           "Design",
           "Research",
           "UX",
@@ -201,7 +185,7 @@
           "Development",
           "Technology",
         ];
-        const dataTypes = [
+        const _dataTypes = [
           "CAD Files",
           "Documentation",
           "User Research",
@@ -224,15 +208,15 @@
         fetchJson.nodes.forEach((node, index) => {
           node.id = index;
           node.tags = [
-            returnRandom(tags),
-            returnRandom(tags),
-            returnRandom(tags)
+            _tags[returnRandom(_tags)],
+            _tags[returnRandom(_tags)],
+            _tags[returnRandom(_tags)]
           ];
 
           fetchJson.links[index] = {
             source: index,
             target: Math.round(Math.random() * (index)),
-            data: dataTypes[returnRandom(dataTypes)]
+            data: _dataTypes[returnRandom(_dataTypes)]
           }
         })
 
@@ -423,10 +407,12 @@
 
         const iterateActiveFilters = () => {
           let string = ""
+          let lastFilter = "";
           filteredNodes.forEach((filter) => {
-            console.log(filter)
+            //if(filter == lastFilter) return;
             string += `<h4>${filter}</h4>`;
-
+            
+            lastFilter = filter;
           })
           return string;
         }
@@ -488,7 +474,9 @@
       clearFilterButton.addEventListener("click", clearFilter);
       function clearFilter() {
         //Uncheck all boxes
-        filterCheckboxes.forEach((checkbox) => {
+        const _filterCheckboxes = document.querySelectorAll(".Users .checkbox input");
+
+        _filterCheckboxes.forEach((checkbox) => {
           checkbox.checked = false;
         });
 
